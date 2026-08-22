@@ -1,0 +1,99 @@
+[project]
+site_name = "DesktopRenamer Documentation"
+site_author = "Michael Yicheng Qiu"
+site_description = "Documentation for DesktopRenamer, its SpaceAPI, and AppleScript automation interface."
+site_url = "https://docs.dr.mqiu.dev"
+
+repo_url = "https://github.com/gitmichaelqiu/DesktopRenamer"
+repo_name = "gitmichaelqiu/DesktopRenamer"
+repo = "fontawesome/brands/git-alt"
+
+copyright = "Copyright &copy; 2026 Michael Y. Qiu"
+
+nav = [
+    { "DesktopRenamer" = "index.md" },
+    { "Getting Started" = [
+        { Installation = "guides/installation.md" },
+        { "Permissions and System Settings" = "guides/permissions.md" },
+        { "Spaces and Full-Screen Apps" = "guides/spaces.md" },
+    ] },
+    { API = [
+        { Overview = "api/index.md" },
+        { "API Versioning" = "api/versioning.md" },
+        { SpaceAPI = "api/space-api.md" },
+        { AppleScript = "api/applescript.md" },
+        { "Window Automation" = "api/windows.md" },
+    ] },
+    { "Troubleshooting" = "guides/troubleshooting.md" },
+]
+
+extra_javascript = [
+    "javascripts/pan_loader.js",
+]
+
+extra_css = [
+    "https://unpkg.com/katex@0/dist/katex.min.css",
+    "stylesheets/desktop-renamer.css",
+    "stylesheets/sheet.css",
+    "stylesheets/pan_zoom.css",
+    "stylesheets/theme-override.css?v2",
+]
+
+[project.theme]
+logo = "images/desktoprenamer-icon.png"
+favicon = "images/desktoprenamer-icon.png"
+features = [
+    "navigation.tabs",
+    "navigation.sections",
+    "navigation.path",
+    "navigation.footer",
+    "content.code.copy",
+    "navigation.top",
+]
+custom_dir = "overrides"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+primary = "indigo"
+accent = "indigo"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+primary = "indigo"
+accent = "indigo"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+primary = "indigo"
+accent = "indigo"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/gitmichaelqiu/DesktopRenamer"
+
+[project.markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+toc = { permalink = true }
+"pymdownx.details" = {}
+"pymdownx.highlight" = {}
+"pymdownx.keys" = {}
+"pymdownx.smartsymbols" = {}
+"pymdownx.superfences" = { custom_fences = [
+    { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+] }
+"pymdownx.tabbed" = { alternate_style = true }
+"pymdownx.tasklist" = { custom_checkbox = true }
+"pymdownx.tilde" = {}

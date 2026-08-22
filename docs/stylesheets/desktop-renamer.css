@@ -1,0 +1,227 @@
+/* =========================================
+   1. DESIGN TOKENS (Minimalism)
+   ========================================= */
+:root {
+    /* Brand */
+    --klein-blue: #002FA7;
+    --klein-blue-text: var(--klein-blue);
+    --pure-black: #000000;
+    --pure-white: #ffffff;
+    --pale-silver: #F8F9FB;
+
+    /* Theme — Light */
+    --bg-primary: var(--pale-silver);
+    --bg-secondary: var(--pure-white);
+    --text-primary: var(--pure-black);
+    --text-secondary: rgba(0, 0, 0, 0.4);
+    --border-color: rgba(0, 0, 0, 0.08);
+    --deep-navy: #020412;
+
+    /* Easing */
+    --mi-smooth: cubic-bezier(0.32, 0.72, 0, 1);
+
+    /* Zensical / Material overrides */
+    --md-primary-fg-color: var(--klein-blue);
+    --md-primary-fg-color--light: #3B6DFF;
+    --md-default-bg-color: var(--bg-primary);
+}
+
+/* =========================================
+   2. DARK MODE
+   ========================================= */
+[data-md-color-scheme="slate"] {
+    --bg-primary: #161819;
+    --bg-secondary: #191919;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.4);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --klein-blue-text: #5B8DEF;
+
+    --md-default-bg-color: var(--bg-primary);
+    --md-default-fg-color: var(--text-primary);
+    --md-primary-fg-color: #5B8DEF;
+}
+
+/* =========================================
+   3. BASE & TYPOGRAPHY
+   ========================================= */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Inter", sans-serif;
+    letter-spacing: -0.02em;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Headings — Inter with tight tracking */
+h1, .md-typeset h1 {
+    font-family: "Inter", sans-serif !important;
+    font-weight: 500;
+    letter-spacing: -0.06em;
+    line-height: 1;
+}
+
+h2, .md-typeset h2,
+h3, .md-typeset h3,
+h4, .md-typeset h4 {
+    font-family: "Inter", sans-serif !important;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+}
+
+h5, .md-typeset h5,
+h6, .md-typeset h6 {
+    font-family: "Inter", sans-serif !important;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+/* Site Title */
+.md-header__title,
+.md-header__topic {
+    font-family: "Inter", sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.04em;
+}
+
+/* Code */
+code, kbd, pre {
+    font-family: "JetBrains Mono", monospace;
+}
+
+/* =========================================
+   4. HEADER — Refined Minimalism
+   ========================================= */
+.md-header {
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-md-color-scheme="slate"] .md-header {
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Site title — Klein Blue accent */
+.md-header__topic {
+    color: var(--klein-blue-text) !important;
+}
+
+/* Header buttons — Klein Blue hover */
+.md-header__button:hover {
+    color: var(--klein-blue-text);
+    opacity: 1;
+}
+
+/* =========================================
+   4b. NAVIGATION TABS — Klein Blue accent
+   ========================================= */
+.md-tabs {
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.md-tabs__link {
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.md-tabs__item--active .md-tabs__link {
+    color: var(--klein-blue-text);
+}
+
+.md-tabs__link:hover {
+    color: var(--klein-blue-text);
+}
+
+/* =========================================
+   5. CONTENT CARDS — Flat with faint borders
+   ========================================= */
+.md-typeset .admonition,
+.md-typeset details {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition,
+[data-md-color-scheme="slate"] .md-typeset details {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+/* =========================================
+   6. SIDEBAR — Clean, solid
+   ========================================= */
+.md-sidebar--secondary,
+.md-nav--secondary,
+.md-nav--secondary .md-nav__title {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* =========================================
+   7. FOOTER LINKS
+   ========================================= */
+.md-footer__link {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    transition: opacity 0.2s var(--mi-smooth);
+}
+
+.md-footer__link:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+.md-footer__title {
+    font-family: "Inter", sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 1.1rem;
+    letter-spacing: -0.04em;
+}
+
+.md-footer__direction {
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+}
+
+/* =========================================
+   8. SPACING
+   ========================================= */
+.md-main__inner {
+    margin-top: 1rem;
+}
+
+/* =========================================
+   9. FOOTER KLEIN BLUE BANNER
+   ========================================= */
+.md-footer-klein-banner {
+    background-color: var(--klein-blue);
+    color: var(--pure-white);
+    padding: 2rem 0;
+}
+
+.md-footer-klein-banner__text {
+    font-family: "Inter", sans-serif;
+    font-size: clamp(3rem, 8vw, 10rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    text-align: left;
+}

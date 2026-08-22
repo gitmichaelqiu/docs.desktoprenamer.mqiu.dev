@@ -1,0 +1,25 @@
+# API Versioning
+
+The current external API contract version is **1.0.0**.
+
+This version is intentionally independent from DesktopRenamer's marketing and build version. A client can therefore be compatible with an API contract even when the app receives an ordinary bug-fix release.
+
+## Compatibility policy
+
+- **Major** version changes indicate incompatible command, notification, or payload changes.
+- **Minor** version changes add backwards-compatible commands or fields.
+- **Patch** version changes represent compatible corrections or clarifications.
+
+Clients should accept unknown fields and should compare versions semantically rather than comparing app versions.
+
+## Reading the version
+
+AppleScript:
+
+```applescript
+tell application "DesktopRenamer"
+    get api version
+end tell
+```
+
+SpaceAPI clients can post the `com.michaelqiu.DesktopRenamer.GetAPIVersion` distributed notification and receive `com.michaelqiu.DesktopRenamer.ReturnAPIVersion` with an `apiVersion` user-info value.

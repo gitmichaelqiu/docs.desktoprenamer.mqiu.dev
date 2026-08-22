@@ -1,0 +1,447 @@
+{
+    "ap:.DS_Store": {
+        "source_id": "ap",
+        "relative_path": ".DS_Store",
+        "hash": "fb9670bc3e02723611fb0479b995dfe10ca7c77d4f56a0d6c887a01a9cfc20c3"
+    },
+    "ap:.obsidian/.DS_Store": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/.DS_Store",
+        "hash": "a04ee76f98572ce7167a9d7f1491ed3a9b8267362e0fdadd0f3d09fe9f735f44"
+    },
+    "ap:.obsidian/app.json": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/app.json",
+        "hash": "39125d06624dea6fcc313cced53034d6a1986c4b00bc02439c0f4c79d8273aca"
+    },
+    "ap:.obsidian/appearance.json": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/appearance.json",
+        "hash": "b0b9bd0b746db5a87d9c04f086122869985a960f3af3d1b299e1346c3750b054"
+    },
+    "ap:.obsidian/community-plugins.json": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/community-plugins.json",
+        "hash": "3c0fefda14fd5dcdd9cfa09ff0dc065ad85ceb32568ff72901e7dcbcdc9c73b7"
+    },
+    "ap:.obsidian/core-plugins.json": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/core-plugins.json",
+        "hash": "6accf63ea9e47cabaee493e20473eb7ead8fb97324120c5b3d44c90f844f9cfe"
+    },
+    "ap:.obsidian/graph.json": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/graph.json",
+        "hash": "89b1b8c279c3229a13509a0fad866ef90a7a70a6536f78d542e9c0960aec3d77"
+    },
+    "ap:.obsidian/hotkeys.json": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/hotkeys.json",
+        "hash": "84f8f4f2317b1c08c561ec21ed14828b50a4c0df40e97d0c8e5360a150d93174"
+    },
+    "ap:.obsidian/workspace.json": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/workspace.json",
+        "hash": "4a5881858fc8ba08035b314223f02cef33826980f02fdefa07fe8e6f28709685"
+    },
+    "ap:Macroeconomics/U2_EconomicsIndicatorsAndBusinessCycle.md": {
+        "source_id": "ap",
+        "relative_path": "Macroeconomics/U2_EconomicsIndicatorsAndBusinessCycle.md",
+        "hash": "c313e009c4a70a02e655737865cdf14c8eb82cf43628d7aa6ff1bb519b142f7b"
+    },
+    "ap:Statistics/.DS_Store": {
+        "source_id": "ap",
+        "relative_path": "Statistics/.DS_Store",
+        "hash": "61dc6b778a875b9348ec861df0740ab77ca55a8b27a122a60c9a4d9e9630dff3"
+    },
+    "ap:Statistics/Summaries/APStat_HypothesisTest-ConfidenceInterval.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/Summaries/APStat_HypothesisTest-ConfidenceInterval.md",
+        "hash": "cf52cf332b814abf20aaea4ce83f68daace4ccafe5edb99fc972fd049566555c"
+    },
+    "ap:Statistics/U1_ExploringOneVariableData/U1C1_SummaryStatistics.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U1_ExploringOneVariableData/U1C1_SummaryStatistics.md",
+        "hash": "8cff6561d763e7dacd01edb9fc4e64fde8cf26f9dfb7a9e305b93e5fb3a83526"
+    },
+    "ap:Statistics/U1_ExploringOneVariableData/U1C2_GraphicalRepresentations.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U1_ExploringOneVariableData/U1C2_GraphicalRepresentations.md",
+        "hash": "541532b00a228bc31fe142661de0f7bc7cec00bebe98b6581551db238bd3d883"
+    },
+    "ap:Statistics/U1_ExploringOneVariableData/U1C3_TheNormalDistribution.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U1_ExploringOneVariableData/U1C3_TheNormalDistribution.md",
+        "hash": "a65cb5cbf37284fa44a3210400d186811de2007016440a93703fe12b7ba37400"
+    },
+    "ap:Statistics/U2_ExploringTwoVariableData/U2C1_Tables-Graphs.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U2_ExploringTwoVariableData/U2C1_Tables-Graphs.md",
+        "hash": "97e1e206f7e42c601374f88d4a03e4c6a0f41aee5d81d5890b26da51eef24f77"
+    },
+    "ap:Statistics/U2_ExploringTwoVariableData/U2C2_Scatterplots-Regression.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U2_ExploringTwoVariableData/U2C2_Scatterplots-Regression.md",
+        "hash": "ff5183ecf904cbe7302430df7fceeecc5a985804855b58d164458765232efab9"
+    },
+    "ap:Statistics/U2_ExploringTwoVariableData/U2C3_ExperimentalDesign.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U2_ExploringTwoVariableData/U2C3_ExperimentalDesign.md",
+        "hash": "921fa4349c4c7578062723c7c8ec17e5a6cbc9f3e9daf416bf27ec67da6ce807"
+    },
+    "ap:Statistics/U3_CollectingData/U3C1_SamplingMethods-Bias.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U3_CollectingData/U3C1_SamplingMethods-Bias.md",
+        "hash": "e7096a745d77d12fda93cd94726c4f514ff9614c02b660094e4a2167d71c303a"
+    },
+    "ap:Statistics/U3_CollectingData/U3C2_ExperimentalDesign.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U3_CollectingData/U3C2_ExperimentalDesign.md",
+        "hash": "ad459a7093c68030f262827bc6dc8435817755bab38cd8ddda43b23543dc8b0d"
+    },
+    "ap:Statistics/U4_Probability-RandomVariables-ProbabilityDistributions/U4C2_DiscreteRandomVariables.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U4_Probability-RandomVariables-ProbabilityDistributions/U4C2_DiscreteRandomVariables.md",
+        "hash": "28a8efd63778da6600da572f1d0a8fc370727c8fc43674da45e386392abaa480"
+    },
+    "ap:Statistics/U4_Probability-RandomVariables-ProbabilityDistributions/U4C3_Bionomial-GeometricDistributions.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U4_Probability-RandomVariables-ProbabilityDistributions/U4C3_Bionomial-GeometricDistributions.md",
+        "hash": "b696340841ee0ca5f7cb874bc26e62e63ecda7bce4307c546666a716100486e5"
+    },
+    "ap:Statistics/U5_SamplingDistributions/U5_SaplingDistributions.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U5_SamplingDistributions/U5_SaplingDistributions.md",
+        "hash": "c7b1955b253d83d078a29ea687d9c2f9290ab69f9c9f20bbd11dd1e825d5eca5"
+    },
+    "ap:Statistics/U6_InferenceForCategoricalData-Proportions/U6C1_Introduction to Inferences.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U6_InferenceForCategoricalData-Proportions/U6C1_Introduction to Inferences.md",
+        "hash": "314a8fd7104a4e9f554f245ac8889613690197d08223a9303a3ad51e0bc269be"
+    },
+    "ap:Statistics/U6_InferenceForCategoricalData-Proportions/U6C2_InferenceForProportions.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U6_InferenceForCategoricalData-Proportions/U6C2_InferenceForProportions.md",
+        "hash": "605c5ca40606731336295c0f65a7f93f7e4e0c368725306fcd53b1f69c76b44d"
+    },
+    "ap:Statistics/U6_InferenceForCategoricalData-Proportions/U6C3_ErrorsInHypothesisTests.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U6_InferenceForCategoricalData-Proportions/U6C3_ErrorsInHypothesisTests.md",
+        "hash": "cad6e830bce53175049e5affc9ba2b8d03f2b9e230ca67bfef3fda20129ff5a8"
+    },
+    "ap:Statistics/U7_InferenceForQuantitativeData_Means/U7C1_InferenceForMeans.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U7_InferenceForQuantitativeData_Means/U7C1_InferenceForMeans.md",
+        "hash": "987012330693481a4a1732e703fd44085bc7b00a48d8850792c7f8610c375b84"
+    },
+    "ap:Statistics/U8_InferenceForCategoricalData-ChiSquare/U8C1_GoodnessOfFit.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U8_InferenceForCategoricalData-ChiSquare/U8C1_GoodnessOfFit.md",
+        "hash": "b6c6e6ee9d7a484fd2733051e5834197dcc90d49707d4cc58dd5103d33c75d5f"
+    },
+    "ap:Statistics/U8_InferenceForCategoricalData-ChiSquare/U8C2_IndependenceAndHomogeneity.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U8_InferenceForCategoricalData-ChiSquare/U8C2_IndependenceAndHomogeneity.md",
+        "hash": "440b1246df93e029ab348dd37beb8a72caef12c500ddbcd2e88fe9ee26a48128"
+    },
+    "ap:Statistics/U9_InferenceForQuantitativeData-Slopes/U9C1_InferenceForRegressionSlopes.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U9_InferenceForQuantitativeData-Slopes/U9C1_InferenceForRegressionSlopes.md",
+        "hash": "b939442d6f551129ed32e4d9af822f24a8c53e2c869e861bef3099e77f0c2735"
+    },
+    "alevel:.DS_Store": {
+        "source_id": "alevel",
+        "relative_path": ".DS_Store",
+        "hash": "6a5a04d3e0bbf46efbace3ba0727236760932eb4c667a17e794bb7a2dc6073e7"
+    },
+    "alevel:.obsidian/.DS_Store": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/.DS_Store",
+        "hash": "a04ee76f98572ce7167a9d7f1491ed3a9b8267362e0fdadd0f3d09fe9f735f44"
+    },
+    "alevel:.obsidian/app.json": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/app.json",
+        "hash": "39125d06624dea6fcc313cced53034d6a1986c4b00bc02439c0f4c79d8273aca"
+    },
+    "alevel:.obsidian/appearance.json": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/appearance.json",
+        "hash": "b0b9bd0b746db5a87d9c04f086122869985a960f3af3d1b299e1346c3750b054"
+    },
+    "alevel:.obsidian/community-plugins.json": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/community-plugins.json",
+        "hash": "3c0fefda14fd5dcdd9cfa09ff0dc065ad85ceb32568ff72901e7dcbcdc9c73b7"
+    },
+    "alevel:.obsidian/core-plugins.json": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/core-plugins.json",
+        "hash": "6accf63ea9e47cabaee493e20473eb7ead8fb97324120c5b3d44c90f844f9cfe"
+    },
+    "alevel:.obsidian/graph.json": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/graph.json",
+        "hash": "89b1b8c279c3229a13509a0fad866ef90a7a70a6536f78d542e9c0960aec3d77"
+    },
+    "alevel:.obsidian/hotkeys.json": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/hotkeys.json",
+        "hash": "84f8f4f2317b1c08c561ec21ed14828b50a4c0df40e97d0c8e5360a150d93174"
+    },
+    "alevel:.obsidian/plugins/obsidian-mind-map/main.js": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/plugins/obsidian-mind-map/main.js",
+        "hash": "fc6ac8460ef17f521f923099a741b5c1e8e6f89e479bfafa8fb0f24a08191113"
+    },
+    "alevel:.obsidian/plugins/obsidian-mind-map/manifest.json": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/plugins/obsidian-mind-map/manifest.json",
+        "hash": "4f485188e1e9c5916778aa8f02a36ddf752c00ff345fbd296785425ef247befe"
+    },
+    "alevel:.obsidian/plugins/sheets/main.js": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/plugins/sheets/main.js",
+        "hash": "61fb8105f6d7566a943734972ca3c8163257f658899004db19da4128a653c3f2"
+    },
+    "alevel:.obsidian/plugins/sheets/manifest.json": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/plugins/sheets/manifest.json",
+        "hash": "8c4032afd102c3f5cc21206bbdcc553b6a9b351c3793b3675d9fa2d874cf6002"
+    },
+    "alevel:.obsidian/plugins/sheets/styles.css": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/plugins/sheets/styles.css",
+        "hash": "f15563dbd53ebd381da92ab5db6e450d64adb2e9f29cfc6eb129b4a5666257c9"
+    },
+    "alevel:.obsidian/workspace-mobile.json": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/workspace-mobile.json",
+        "hash": "acdb2a2921325dbef3d7e3b60397520b073758b370ea77779f5b3ee10f5972df"
+    },
+    "alevel:.obsidian/workspace.json": {
+        "source_id": "alevel",
+        "relative_path": ".obsidian/workspace.json",
+        "hash": "6c4f4cbc10883e767c82f9eb65bd412b798a47014382e04d1f076d5fbb3cf723"
+    },
+    "alevel:AS Chemistry.md": {
+        "source_id": "alevel",
+        "relative_path": "AS Chemistry.md",
+        "hash": "646e4e0189871046ef876ce384fe994d1e769c434e115009e72beef6116ff7a8"
+    },
+    "alevel:AS Economics/AS Microeconomics.md": {
+        "source_id": "alevel",
+        "relative_path": "AS Economics/AS Microeconomics.md",
+        "hash": "57e091f566cc1e297ced8b02712093a54b6281e4e0d56e7ce45a1997d7b399e6"
+    },
+    "alevel:AS Chemistry Problem Collection.md": {
+        "source_id": "alevel",
+        "relative_path": "AS Chemistry Problem Collection.md",
+        "hash": "d6702ec5f8ba64fedf13e8cc2ca4379a1283feaba52a5742081a0dab12b5be05"
+    },
+    "alevel:Attachments/.DS_Store": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/.DS_Store",
+        "hash": "d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3"
+    },
+    "alevel:Attachments/Screenshot 2026-03-24 at 10.21.52.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-24 at 10.21.52.png",
+        "hash": "8caab7068e07b9b62bde6d1d1b891feb600573579be0d064551b5d26854d20b9"
+    },
+    "alevel:Attachments/Screenshot 2026-03-24 at 18.39.13.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-24 at 18.39.13.png",
+        "hash": "165677eb9f01a0714d111c39e316f6c05db03607faf7c6e25529e525520e1c9e"
+    },
+    "alevel:Attachments/Screenshot 2026-03-24 at 18.43.46.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-24 at 18.43.46.png",
+        "hash": "ddf24405295c4660b507c5715b9b345da8059d1eee09b419baf75d90647bc5fb"
+    },
+    "alevel:Attachments/Screenshot 2026-03-24 at 18.55.28.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-24 at 18.55.28.png",
+        "hash": "c5b095f914682a78c53e5e48091fdc915428aedddcf740252cd7c0369d60e6eb"
+    },
+    "alevel:Attachments/Screenshot 2026-03-24 at 19.00.45.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-24 at 19.00.45.png",
+        "hash": "7c5df110e447e04febd1fb9c96ab1839b4fe16c6ac8c49dd3a69009664c6ff47"
+    },
+    "alevel:Attachments/Screenshot 2026-03-24 at 19.05.06.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-24 at 19.05.06.png",
+        "hash": "1b337519fe95d6881e7edb58d367fb32dfac57b9240770a520d935b17c5538c2"
+    },
+    "alevel:Attachments/Screenshot 2026-03-25 at 18.40.43.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-25 at 18.40.43.png",
+        "hash": "baa286bb7df83176bd6a53c788b48cbe4c83943e673137c814642bd22a3b11e5"
+    },
+    "alevel:Attachments/Screenshot 2026-03-25 at 18.46.09.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-25 at 18.46.09.png",
+        "hash": "bb6c4af8deb3eac15bcbb77ae6d3cc3735601d1a548e495db9ae81683ab90c20"
+    },
+    "alevel:Attachments/Screenshot 2026-03-25 at 20.51.21.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-25 at 20.51.21.png",
+        "hash": "717bac05c3450c439fd230feb1e0d9904a6ba5b9a85b182a4a2de77d8124e00f"
+    },
+    "alevel:Attachments/Screenshot 2026-03-25 at 20.57.19.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-25 at 20.57.19.png",
+        "hash": "0935954f9871b94aed0eaa87d4de10425bdfb3d2a6579be1c91af2d3659473c9"
+    },
+    "alevel:Attachments/Screenshot 2026-03-27 at 08.33.59.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-27 at 08.33.59.png",
+        "hash": "a6da4fd31577e207365422de1e7a679df081655af2d1123cb276b5dc560471f7"
+    },
+    "alevel:Attachments/Screenshot 2026-03-27 at 08.38.17.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-27 at 08.38.17.png",
+        "hash": "2ca520bddf4e7635bf88229d143a95003ccd337779aec80fd0572b3d72631000"
+    },
+    "alevel:Attachments/Screenshot 2026-03-27 at 08.44.04.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-27 at 08.44.04.png",
+        "hash": "f9df5aa6cc82a5d1918f6abed25e8dda2f88498e333de6680e40bb5c6396d0ae"
+    },
+    "alevel:Attachments/Screenshot 2026-03-30 at 21.09.26.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-30 at 21.09.26.png",
+        "hash": "87c5dd0704157e3e85937a2155059026fb7a517111a8d565ae862b14b32f47c7"
+    },
+    "alevel:Attachments/Screenshot 2026-03-31 at 11.40.58.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-31 at 11.40.58.png",
+        "hash": "73ce70b1a91a8ab1cb413c39cae064229d747f7291936953af35a7b19b93375d"
+    },
+    "alevel:Attachments/Screenshot 2026-03-31 at 14.22.41.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-03-31 at 14.22.41.png",
+        "hash": "60da6437544eab2173d70a42f2874bd5245cd87dbaf15d054da795288016dc98"
+    },
+    "ap:.obsidian/plugins/obsidian-mind-map/main.js": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/plugins/obsidian-mind-map/main.js",
+        "hash": "fc6ac8460ef17f521f923099a741b5c1e8e6f89e479bfafa8fb0f24a08191113"
+    },
+    "ap:.obsidian/plugins/obsidian-mind-map/manifest.json": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/plugins/obsidian-mind-map/manifest.json",
+        "hash": "4f485188e1e9c5916778aa8f02a36ddf752c00ff345fbd296785425ef247befe"
+    },
+    "ap:.obsidian/plugins/sheets/main.js": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/plugins/sheets/main.js",
+        "hash": "61fb8105f6d7566a943734972ca3c8163257f658899004db19da4128a653c3f2"
+    },
+    "ap:.obsidian/plugins/sheets/manifest.json": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/plugins/sheets/manifest.json",
+        "hash": "8c4032afd102c3f5cc21206bbdcc553b6a9b351c3793b3675d9fa2d874cf6002"
+    },
+    "ap:.obsidian/plugins/sheets/styles.css": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/plugins/sheets/styles.css",
+        "hash": "f15563dbd53ebd381da92ab5db6e450d64adb2e9f29cfc6eb129b4a5666257c9"
+    },
+    "ap:.obsidian/workspace-mobile.json": {
+        "source_id": "ap",
+        "relative_path": ".obsidian/workspace-mobile.json",
+        "hash": "acdb2a2921325dbef3d7e3b60397520b073758b370ea77779f5b3ee10f5972df"
+    },
+    "alevel:AS Physics Problem Collection.md": {
+        "source_id": "alevel",
+        "relative_path": "AS Physics Problem Collection.md",
+        "hash": "466b9c17be4474b0687cbf4c2ea59e53a24b14e705c06769a798131dabdd7169"
+    },
+    "alevel:AS Physics.md": {
+        "source_id": "alevel",
+        "relative_path": "AS Physics.md",
+        "hash": "478b57a8e6f927af2c9e8f0d65cc94035153ce43fb3ea06e9bc0f52f9a2e13b6"
+    },
+    "alevel:Attachments/Screenshot 2026-04-15 at 09.17.58.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-04-15 at 09.17.58.png",
+        "hash": "f18fa81582a16376620e03b2ee7dff815c10842e1a1d2101777910920f2e5955"
+    },
+    "alevel:Attachments/Screenshot 2026-04-15 at 09.18.50.png": {
+        "source_id": "alevel",
+        "relative_path": "Attachments/Screenshot 2026-04-15 at 09.18.50.png",
+        "hash": "930c1716a8da9f80ee78c921e9623d11b3d422cf1e5de1e20ebf423429de5ec1"
+    },
+    "ap:Attachments/Screenshot 2026-04-01 at 20.57.50.png": {
+        "source_id": "ap",
+        "relative_path": "Attachments/Screenshot 2026-04-01 at 20.57.50.png",
+        "hash": "e38105ac719ef2eb37e66c6319f72879a63e1ca08f9ae6d6e5649e3bbb001eee"
+    },
+    "ap:Statistics/AP Statistics Problem Collection.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/AP Statistics Problem Collection.md",
+        "hash": "18ce47bf5b06c3e510a6b0b349776163a4660cecf60c784c03c246c440c8114c"
+    },
+    "ap:Statistics/Summaries/APStat_DetermineTests.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/Summaries/APStat_DetermineTests.md",
+        "hash": "14a237a7b8227f235f287dc088d5961203056c739718f69e067650d6763c4c04"
+    },
+    "ap:Statistics/Summaries/AP_Stat_ProblemCollection.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/Summaries/AP_Stat_ProblemCollection.md",
+        "hash": "6ae32682a8776099d9f3f4b2c19919dd6443e728758aac2b08eb274d9f3b5fc9"
+    },
+    "ap:Statistics/U9_InferenceForQuantitativeData-Slopes/U9C2_SimpleLinearRegression.md": {
+        "source_id": "ap",
+        "relative_path": "Statistics/U9_InferenceForQuantitativeData-Slopes/U9C2_SimpleLinearRegression.md",
+        "hash": "997482a38525fb3ddf8958cd53f7aebd4d01cad982b1f095d651e1e30fa7e0bd"
+    },
+    "ap:Attachments/Screenshot 2026-05-11 at 09.00.18.png": {
+        "source_id": "ap",
+        "relative_path": "Attachments/Screenshot 2026-05-11 at 09.00.18.png",
+        "hash": "f9e34ef424a944056a7aaf0516871bc544fe915a0df0efd73e8bd9ad0dcd9729"
+    },
+    "ap:Attachments/Screenshot 2026-05-11 at 20.14.23.png": {
+        "source_id": "ap",
+        "relative_path": "Attachments/Screenshot 2026-05-11 at 20.14.23.png",
+        "hash": "fd3ec60d182c194b0c51f775eff51b5b5eac2344bf1cff02374245d53c7b1d9d"
+    },
+    "ap:Attachments/Screenshot 2026-05-11 at 20.14.59.png": {
+        "source_id": "ap",
+        "relative_path": "Attachments/Screenshot 2026-05-11 at 20.14.59.png",
+        "hash": "fd880918c20a5ffb7104e8f5e84f4dd746513f60a02dae2c1315d7ab65d59d85"
+    },
+    "ap:Attachments/mech_01.png": {
+        "source_id": "ap",
+        "relative_path": "Attachments/mech_01.png",
+        "hash": "89c66229f8eada79232b365971d5ab3dfa82fb88da25b389ce55f1d0126367a9"
+    },
+    "ap:Attachments/mech_02.png": {
+        "source_id": "ap",
+        "relative_path": "Attachments/mech_02.png",
+        "hash": "5f85affda278ebc455f132310ae853cb73f6c12839c1ff6f445030e8dfac5e4d"
+    },
+    "ap:Macroeconomics/QuickGuideForASEcoLearnerToAPMacro.md": {
+        "source_id": "ap",
+        "relative_path": "Macroeconomics/QuickGuideForASEcoLearnerToAPMacro.md",
+        "hash": "e4308aa6376f75a2db95e8c277334f493180f671c229a6ed38a7aa1661d64eb0"
+    },
+    "ap:Mechanics/AP Mechanics Problem Collection.md": {
+        "source_id": "ap",
+        "relative_path": "Mechanics/AP Mechanics Problem Collection.md",
+        "hash": "7f0ca896564062416250be0fcf4d9937855f8ac96afb6d05f494d700903520e9"
+    },
+    "ap:Mechanics/QuickGuideForASPhyLearnerToAPPhyMechanics.md": {
+        "source_id": "ap",
+        "relative_path": "Mechanics/QuickGuideForASPhyLearnerToAPPhyMechanics.md",
+        "hash": "b9412ab27342173a6906b6de00c69b28c71b03b318cc90543e29e7e7951072b7"
+    },
+    "ap:Statistics/Summaries/.DS_Store": {
+        "source_id": "ap",
+        "relative_path": "Statistics/Summaries/.DS_Store",
+        "hash": "d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3"
+    }
+}

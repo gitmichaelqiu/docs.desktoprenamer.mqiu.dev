@@ -1,0 +1,29 @@
+#map-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ffffff !important; /* Force solid white in light mode */
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Dark mode support - Targeting body attribute used by MkDocs Material */
+body[data-md-color-scheme="slate"] #map-wrapper {
+    background-color: #1e2124 !important; /* Force solid dark in dark mode */
+    border-color: rgba(255,255,255,0.1);
+}
+
+/* Ensure the SVG takes up the full container */
+#map-wrapper embed, #map-wrapper object {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: transparent !important;
+}
+
+/* In dark mode, invert the SVG colors */
+body[data-md-color-scheme="slate"] #map-wrapper embed {
+    filter: invert(0.9) hue-rotate(180deg) !important;
+}

@@ -1,0 +1,36 @@
+/* Styling for Sheets Extended tables */
+table.sheet {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+    font-size: 0.9em;
+}
+
+table.sheet th, table.sheet td {
+    border: 1px solid var(--md-typeset-table-color, #e0e0e0);
+    padding: 8px 12px;
+    text-align: left;
+}
+
+table.sheet th {
+    background-color: var(--md-code-bg-color, #f5f5f5);
+    font-weight: bold;
+}
+
+/* Dark mode adjustments if using Zensical symbols */
+[data-md-color-scheme="slate"] table.sheet th {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+table.sheet td {
+    background-color: var(--md-main-bg-color, #ffffff);
+}
+
+[data-md-color-scheme="slate"] table.sheet td {
+    background-color: transparent;
+}
+
+/* Horizontal alignment classes */
+table.sheet .text-left { text-align: left; }
+table.sheet .text-center { text-align: center; }
+table.sheet .text-right { text-align: right; }
