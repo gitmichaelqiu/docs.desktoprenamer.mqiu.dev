@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Troubleshooting
 
 ## The launcher or shortcuts do nothing

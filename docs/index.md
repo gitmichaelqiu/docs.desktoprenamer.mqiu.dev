@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # DesktopRenamer
 
 DesktopRenamer is a macOS menu bar application with a versioned automation interface for Mission Control spaces.
