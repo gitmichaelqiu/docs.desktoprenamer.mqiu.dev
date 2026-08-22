@@ -92,6 +92,10 @@ html {
     filter: none;
 }
 
+[data-md-color-scheme="slate"] .md-logo img[src$="desktoprenamer-icon.png"] {
+    content: url("../images/desktoprenamer-icon-dark.png");
+}
+
 /* Table background: white in light mode, dark in dark mode */
 [data-md-color-scheme="default"] .md-typeset table {
   background-color: #ffffff;
