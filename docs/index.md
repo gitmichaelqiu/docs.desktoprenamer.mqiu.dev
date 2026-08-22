@@ -1,19 +1,17 @@
 # DesktopRenamer
 
-DesktopRenamer is a macOS menu bar application for naming, navigating, and automating Mission Control spaces.
+DesktopRenamer is a macOS menu bar application with a versioned automation interface for Mission Control spaces.
 
 It provides:
 
-- Custom names for regular spaces and fullscreen spaces.
-- Fast keyboard, gesture, launcher, and menu bar navigation.
-- Window movement between spaces and displays.
-- Native space rearrangement when macOS exposes the required operation.
-- Space labels, preview labels, and window-management helpers.
 - A versioned SpaceAPI and AppleScript automation surface.
+- Stable space identifiers, names, display associations, and fullscreen metadata.
+- Window inspection, focus, movement, and control actions.
+- Native space switching and rearrangement operations.
 
 ## Documentation
 
-Use **Getting Started** for installation, permissions, and space behavior. Use **API** when integrating DesktopRenamer with Raycast, AppleScript, or another automation tool.
+This site is for developers integrating DesktopRenamer with Raycast, AppleScript, SpaceAPI, or another automation tool. **Integration Setup** covers platform prerequisites and the Mission Control state that affects integrations. **API** defines the stable contract.
 
 ## Requirements
 
@@ -27,9 +25,9 @@ The external API is disabled or enabled from the app's settings. Existing API cl
 
 -   :material-rocket-launch: **Start here**
 
-    Install DesktopRenamer and configure the required macOS permissions.
+    Verify the macOS version, API setting, and Accessibility requirements for automation.
 
-    [Installation](guides/installation.md)
+    [Prerequisites](guides/installation.md)
 
 -   :material-api: **Integrate**
 
@@ -39,8 +37,8 @@ The external API is disabled or enabled from the app's settings. Existing API cl
 
 -   :material-monitor-screenshot: **Understand spaces**
 
-    Learn how regular and fullscreen spaces are identified and rearranged.
+    Learn how regular and fullscreen spaces affect integrations.
 
-    [Spaces and fullscreen apps](guides/spaces.md)
+    [Spaces model](guides/spaces.md)
 
 </div>

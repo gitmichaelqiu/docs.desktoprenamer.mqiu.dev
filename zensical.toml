@@ -12,10 +12,10 @@ copyright = "Copyright &copy; 2026 Michael Y. Qiu"
 
 nav = [
     { "DesktopRenamer" = "index.md" },
-    { "Getting Started" = [
-        { Installation = "guides/installation.md" },
-        { "Permissions and System Settings" = "guides/permissions.md" },
-        { "Spaces and Full-Screen Apps" = "guides/spaces.md" },
+    { "Integration Setup" = [
+        { Prerequisites = "guides/installation.md" },
+        { Permissions = "guides/permissions.md" },
+        { "Spaces Model" = "guides/spaces.md" },
     ] },
     { API = [
         { Overview = "api/index.md" },
@@ -24,7 +24,7 @@ nav = [
         { AppleScript = "api/applescript.md" },
         { "Window Automation" = "api/windows.md" },
     ] },
-    { "Troubleshooting" = "guides/troubleshooting.md" },
+    { "Integration Troubleshooting" = "guides/troubleshooting.md" },
 ]
 
 extra_javascript = [
@@ -88,6 +88,7 @@ footnotes = {}
 md_in_html = {}
 toc = { permalink = true }
 "pymdownx.details" = {}
+"pymdownx.emoji" = { emoji_generator = "zensical.extensions.emoji.to_svg", emoji_index = "zensical.extensions.emoji.twemoji" }
 "pymdownx.highlight" = {}
 "pymdownx.keys" = {}
 "pymdownx.smartsymbols" = {}

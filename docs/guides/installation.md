@@ -1,10 +1,14 @@
-# Installation
+# Integration prerequisites
 
-## Direct download
+This page is for developers preparing a machine to run and integrate with DesktopRenamer.
 
-Download the latest release from [GitHub Releases](https://github.com/gitmichaelqiu/DesktopRenamer/releases), move `DesktopRenamer.app` to `/Applications`, and open it.
+## Runtime requirements
 
-DesktopRenamer does not require disabling SIP. Releases are not signed with an Apple Developer ID, so macOS may require confirmation in **System Settings → Privacy & Security → Open Anyway**.
+- macOS 13 Ventura or later.
+- Mission Control spaces configured on at least one display.
+- DesktopRenamer installed from [GitHub Releases](https://github.com/gitmichaelqiu/DesktopRenamer/releases) or Homebrew.
+
+DesktopRenamer does not require disabling SIP. Unsigned releases may require confirmation in **System Settings → Privacy & Security → Open Anyway**.
 
 ## Homebrew
 
@@ -12,10 +16,10 @@ DesktopRenamer does not require disabling SIP. Releases are not signed with an A
 brew install --cask gitmichaelqiu/tap/desktoprenamer
 ```
 
-## Raycast
+## Companion clients
 
-The companion Raycast extension can be installed from [Raycast](https://www.raycast.com/michael_qiu/desktoprenamer). The extension uses DesktopRenamer's external API for space and window operations.
+The [Raycast extension](https://www.raycast.com/michael_qiu/desktoprenamer) uses the external API for space and window operations. Other clients can use the same API surfaces without installing Raycast.
 
-## First launch
+## Enable the API
 
-Open DesktopRenamer from the menu bar, complete the permission prompts, and open Settings to review the launcher, switching, labels, and API options.
+Open **Settings → General → Advanced** and confirm that the API is enabled. Existing installations keep the API enabled by default unless it was explicitly disabled.
