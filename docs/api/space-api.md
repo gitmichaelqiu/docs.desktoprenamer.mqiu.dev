@@ -15,6 +15,8 @@ com.michaelqiu.DesktopRenamer
 | `GetAPIVersion` | `ReturnAPIVersion` | Read the external API contract version. |
 | — | `ReturnAPIState` | Receive API enabled/disabled changes. |
 
+All notification names use the prefix `com.michaelqiu.DesktopRenamer`. Requests should be posted only after response observers have been registered.
+
 ## Active-space payload
 
 `ReturnActiveSpace` includes:
@@ -37,6 +39,17 @@ spaceNumber: NSNumber
 ```
 
 The app broadcasts updates when the active space or stored names change. A client should request an initial snapshot after subscribing, then reconcile subsequent broadcasts by identifier.
+
+## Payload reference
+
+| Notification | `userInfo` | Notes |
+| --- | --- | --- |
+| `ReturnActiveSpace` | `apiVersion`, `spaceUUID`, `spaceName`, `spaceNumber` | `spaceNumber` is `0` for the synthetic `FULLSCREEN` value. |
+| `ReturnSpaceList` | `apiVersion`, `spaces` | `spaces` is an array of dictionaries using the three space fields above. |
+| `ReturnAPIVersion` | `apiVersion` | Sent in response to `GetAPIVersion`. |
+| `ReturnAPIState` | `isEnabled` | A Boolean indicating whether the listener is active. |
+
+The notification center does not provide a request error callback. If a response is missing, check API state and request a fresh snapshot after subscribing.
 
 ## Swift example
 

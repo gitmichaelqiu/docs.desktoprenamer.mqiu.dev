@@ -12,6 +12,32 @@ end tell
 
 The result is grouped by space and includes each visible application window. The exact text format is intended for the companion Raycast extension and may gain fields in future compatible API versions.
 
+The current format is newline-delimited:
+
+```text
+>spaceID~spaceName~displayName~number~isFullscreen~appPath
+  windowID|pid|ownerName|appPath|title|isMinimized|isHidden
+```
+
+Each space begins with `>`. Its following window rows begin with two spaces. Fields are positional; split space rows on `~` and window rows on `|`. Application paths and window titles can be empty. Window rows are emitted only for regular applications with valid Accessibility windows; background agents and stale window records are excluded.
+
+The fields are:
+
+| Field | Meaning |
+| --- | --- |
+| `spaceID` | Managed space identifier. |
+| `spaceName` | DesktopRenamer’s current name for the space. |
+| `displayName` | macOS display name. |
+| `number` | Space number on that display. |
+| `isFullscreen` | `1` or `0`. |
+| `appPath` | Full path of the fullscreen owner, when applicable. |
+| `windowID` | Core Graphics window ID. |
+| `pid` | Owner process ID. |
+| `ownerName` | Application name. |
+| `title` | Window title, when exposed by macOS. |
+| `isMinimized` | `1` or `0`. |
+| `isHidden` | `1` or `0`. |
+
 ## Move and focus windows
 
 ```applescript
@@ -35,3 +61,5 @@ end tell
 ```
 
 Supported action names include `close`, `minimize`, `hide`, `enterFullScreen`, `exitFullScreen`, `quit`, and `restore`.
+
+Actions that use Accessibility may first switch to the target space and wait for Mission Control to settle. Treat the command as fire-and-forget and refresh window data afterward.

@@ -23,7 +23,24 @@ end tell
 UUID~Name~DisplayName~Number~IsFullscreen~AppPath
 ```
 
+`get all spaces` is sorted by display and space number. Names and paths may be empty. Space identifiers are not guaranteed to survive display changes or Mission Control recreation.
+
 The `direction` parameter for `rearrange space` must be `up` or `down`.
+
+## Command reference
+
+| Command | Parameters | Return / timing |
+| --- | --- | --- |
+| `get api version` | — | Returns the API contract version immediately. |
+| `get current space name` | — | Returns a string immediately. |
+| `get current space id` | — | Returns current ManagedSpaceID values, comma-separated for multiple displays. |
+| `get all spaces` | — | Returns the multiline space record described above. |
+| `rename current space` | Text | Asynchronous; returns no value. |
+| `rename space` | Space ID, `to` text | Asynchronous; returns no value. |
+| `switch to space` | Space ID | Asynchronous; returns no value. |
+| `rearrange space` | Space ID, `direction` | Asynchronous; moves one position. |
+
+Invalid rearrangement directions set the script error to `Direction must be up or down`. The API-disabled error is `API Disabled`.
 
 ## Label and launcher commands
 
