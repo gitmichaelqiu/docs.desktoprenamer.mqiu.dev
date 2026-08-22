@@ -2,7 +2,7 @@
 
 ## Scope
 
-This repository contains the Zensical source for `docs.dr.mqiu.dev`. Keep documentation accurate against the DesktopRenamer app and its external API contract.
+This repository contains the Zensical source for `docs.desktoprenamer.mqiu.dev`. Keep documentation accurate against the DesktopRenamer app and its external API contract.
 
 ## Writing style
 
@@ -11,7 +11,7 @@ This repository contains the Zensical source for `docs.dr.mqiu.dev`. Keep docume
 - Keep code examples executable or explicitly label them as pseudocode.
 - Document user-visible behavior, permissions, platform assumptions, and failure states.
 - Do not claim support for an API command or payload that is not present in the app's scripting dictionary or API implementation.
-- Keep the footer label as `docs.dr.mqiu.dev`.
+- Keep the footer label as `docs.desktoprenamer.mqiu.dev`.
 
 ## Change workflow
 

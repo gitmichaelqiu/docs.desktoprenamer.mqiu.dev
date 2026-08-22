@@ -2,7 +2,7 @@
 site_name = "DesktopRenamer Documentation"
 site_author = "Michael Yicheng Qiu"
 site_description = "Documentation for DesktopRenamer, its SpaceAPI, and AppleScript automation interface."
-site_url = "https://docs.dr.mqiu.dev"
+site_url = "https://docs.desktoprenamer.mqiu.dev"
 
 repo_url = "https://github.com/gitmichaelqiu/DesktopRenamer"
 repo_name = "gitmichaelqiu/DesktopRenamer"

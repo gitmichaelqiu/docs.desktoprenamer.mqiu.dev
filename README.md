@@ -1,6 +1,6 @@
 # DesktopRenamer Documentation
 
-Source for [docs.dr.mqiu.dev](https://docs.dr.mqiu.dev), built with [Zensical](https://zensical.org/).
+Source for [docs.desktoprenamer.mqiu.dev](https://docs.desktoprenamer.mqiu.dev), built with [Zensical](https://zensical.org/).
 
 The site documents DesktopRenamer installation, macOS permissions, Mission Control spaces, SpaceAPI, AppleScript, and window automation.
 
