@@ -83,13 +83,13 @@ html {
   scroll-margin: 0;
 }
 
-/* Logo: SVG is white, invert to black in light mode */
-.md-logo img {
-  filter: brightness(0);
+/* Keep raster product icons colorful; invert only the white SVG logo variant. */
+.md-logo img[src$=".svg"] {
+    filter: brightness(0);
 }
 
-[data-md-color-scheme="slate"] .md-logo img {
-  filter: none;
+[data-md-color-scheme="slate"] .md-logo img[src$=".svg"] {
+    filter: none;
 }
 
 /* Table background: white in light mode, dark in dark mode */
