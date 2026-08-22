@@ -11,6 +11,7 @@ repo = "fontawesome/brands/git-alt"
 copyright = "Copyright &copy; 2026 Michael Y. Qiu"
 
 nav = [
+    { "Main" = "https://desktoprenamer.mqiu.dev/" },
     { "DesktopRenamer" = "index.md" },
     { "Integration Setup" = [
         { Prerequisites = "guides/installation.md" },
