@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Raycast Integration
 
 The official [DesktopRenamer Raycast extension](https://www.raycast.com/michael_qiu/desktoprenamer) is a reference client for both API surfaces.
