@@ -1,6 +1,6 @@
 # Structured API
 
-The structured SpaceAPI is an additive revision of the existing API. It is available from contract version **1.2.0** and uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope; it does not change the contract's major version.
+The structured SpaceAPI is the first formally versioned API contract. It is available from contract version **1.0.0** and uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope and is versioned independently from the API contract.
 
 The legacy SpaceAPI notifications, user-info keys, delimiter formats, and AppleScript commands remain supported. New integrations should prefer this page's structured protocol.
 
@@ -86,7 +86,7 @@ Events are JSON-RPC notifications and therefore have no ID or response. The curr
   "params": {
     "reason": "activeSpaceChanged",
     "snapshot": {
-      "apiVersion": "1.2.0",
+      "apiVersion": "1.0.0",
       "revision": 18,
       "timestamp": "2026-08-31T07:00:00Z",
       "currentSpaceIDs": ["SPACE-ID"],
@@ -121,7 +121,7 @@ Each space object contains:
 
 ```json
 {
-  "apiVersion": "1.2.0",
+  "apiVersion": "1.0.0",
   "revision": 18,
   "timestamp": "2026-08-31T07:00:00Z",
   "currentSpaceIDs": ["SPACE-ID"],
@@ -138,7 +138,7 @@ Each space object contains:
 
 ```json
 {
-  "apiVersion": "1.2.0",
+  "apiVersion": "1.0.0",
   "revision": 18,
   "timestamp": "2026-08-31T07:00:00Z",
   "spaces": [/* space objects */],
@@ -204,7 +204,7 @@ Accepted asynchronous operations return:
 
 ```json
 {
-  "contractVersion": "1.2.0",
+  "contractVersion": "1.0.0",
   "jsonRPCVersion": "2.0",
   "supportedMethods": ["getAPIInfo", "getSpaceSnapshot"],
   "legacyNotifications": true,
@@ -304,6 +304,6 @@ Existing clients can continue using [legacy SpaceAPI](space-api.md) without chan
 
 1. Keep the legacy listener as a fallback.
 2. Request `getAPIInfo` on `RPCRequest`.
-3. Use structured snapshots and UUID request IDs when the reported contract is `1.2.0` or newer.
+3. Use structured snapshots and UUID request IDs when the reported contract is `1.0.0` or newer.
 4. Fall back to the legacy notification and delimiter protocol only when the structured channel is unavailable or the client explicitly targets an older app.
 5. Do not split structured names or titles on `~`, `|`, or newlines.

@@ -2,7 +2,7 @@
 
 This page records changes to the external contract, independently of DesktopRenamer’s app release version.
 
-## 1.2.0
+## 1.0.0
 
 Added an additive structured API:
 
@@ -13,7 +13,7 @@ Added an additive structured API:
 - Typed AppleScript records and structured read commands.
 - Continued support for all legacy SpaceAPI notifications, payload keys, delimiter formats, and AppleScript commands.
 
-## 1.0.0
+## Legacy (pre-1.0)
 
 Initial documented contract:
 

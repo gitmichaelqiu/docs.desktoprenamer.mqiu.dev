@@ -4,7 +4,7 @@ DesktopRenamer's scripting dictionary is available to Script Editor after the ap
 
 ## Structured records
 
-Contract `1.2.0` adds typed records alongside the existing commands. The new commands are:
+Contract `1.0.0` adds typed records alongside the existing commands. The new commands are:
 
 ```applescript
 tell application "DesktopRenamer"
