@@ -1,6 +1,6 @@
-# API Quick Start
+# API quick start
 
-This example shows the preferred request flow for a Swift client using the [structured JSON-RPC API](structured.md). The legacy example below remains useful for existing integrations and continues to work unchanged.
+This example shows the preferred request flow for a Swift client using the [structured SpaceAPI protocol](spaceapi/structured.md). The legacy example below remains useful for existing integrations and continues to work unchanged.
 
 ## Structured request
 
@@ -75,7 +75,7 @@ RunLoop.main.run()
 
 The request notifications do not carry a payload. The response arrives through `userInfo`. Keep the observers alive for the lifetime of the client, and request fresh snapshots after reconnecting or receiving `ReturnAPIState` with `isEnabled == false` followed by `true`.
 
-For a one-off command, AppleScript is usually simpler:
+For a one-off command, [AppleScript](applescript/index.md) is usually simpler:
 
 ```bash
 osascript -e 'tell application "DesktopRenamer" to get all spaces'

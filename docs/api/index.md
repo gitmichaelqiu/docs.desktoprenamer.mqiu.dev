@@ -1,16 +1,17 @@
-# API Overview
+# API overview
 
 DesktopRenamer exposes three automation surfaces:
 
-1. **Structured SpaceAPI**, based on JSON-RPC 2.0 over `DistributedNotificationCenter`, for typed reads, operations, and state events.
-2. **Legacy SpaceAPI**, based on `DistributedNotificationCenter`, for existing current-space and space-list integrations.
-3. **AppleScript**, for commands that switch, rename, rearrange, inspect, and move windows.
+1. **SpaceAPI**, based on `DistributedNotificationCenter`. New integrations should use its [structured protocol](spaceapi/structured.md); existing clients can continue using the [legacy format](spaceapi/legacy-format.md).
+2. **AppleScript**, for commands that switch, rename, rearrange, inspect, and move windows. Start with the [AppleScript overview](applescript/index.md).
 
-The API is enabled by default for existing installations and can be controlled from **Settings → General → Advanced**. Clients should handle the API-disabled state and verify the [contract version](versioning.md). New integrations should start with the [Structured API](structured.md); the [legacy SpaceAPI](space-api.md) remains available for compatibility.
+The API is enabled by default for existing installations and can be controlled from **Settings → General → Advanced**. Clients should handle the API-disabled state and verify the [contract version](versioning.md). Choose the [structured SpaceAPI protocol](spaceapi/structured.md) for new integrations, or the [legacy format](spaceapi/legacy-format.md) when maintaining an existing client.
+
+Use the navigation to choose the integration surface first. The same concepts—spaces, windows, asynchronous operations, and API availability—are described separately for each calling method.
 
 ## Space identifiers
 
-Use `get all spaces` through AppleScript or the `ReturnSpaceList` notification to obtain current identifiers. Do not persist a space ID indefinitely: macOS can replace identifiers after display or Mission Control changes.
+Use the SpaceAPI space snapshot or AppleScript's `get all spaces` command to obtain current identifiers. Do not persist a space ID indefinitely: macOS can replace identifiers after display or Mission Control changes.
 
 ## Main-thread behavior
 
@@ -34,6 +35,6 @@ Space and window operations are not transactional. A command can be accepted bef
 
 ## Error and permission model
 
-Legacy SpaceAPI has no synchronous error response. A missing legacy response usually means that the API is disabled, the client subscribed after posting a request, or DesktopRenamer is still reconciling Mission Control. Structured SpaceAPI returns JSON-RPC errors, including an explicit API-disabled code. AppleScript reports `API Disabled` for commands with a defined return value; asynchronous commands can return before the requested operation succeeds.
+The legacy SpaceAPI format has no synchronous error response. A missing response usually means that the API is disabled, the client subscribed after posting a request, or DesktopRenamer is still reconciling Mission Control. Structured SpaceAPI returns JSON-RPC errors, including an explicit API-disabled code. AppleScript reports `API Disabled` for commands with a defined return value; asynchronous commands can return before the requested operation succeeds.
 
 Window and rearrangement operations additionally require Accessibility permission. Clients should surface a permission action instead of retrying indefinitely.

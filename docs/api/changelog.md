@@ -1,4 +1,4 @@
-# API Changelog
+# API changelog
 
 This page records changes to the external contract, independently of DesktopRenamer’s app release version.
 
@@ -13,9 +13,9 @@ Added an additive structured API:
 - Typed AppleScript records and structured read commands.
 - Continued support for all legacy SpaceAPI notifications, payload keys, delimiter formats, and AppleScript commands.
 
-## Legacy (pre-1.0)
+## Legacy format (pre-1.0.0)
 
-Initial documented contract:
+Initial compatibility contract, before formal API versioning:
 
 - SpaceAPI active-space and space-list snapshots.
 - API version discovery through SpaceAPI and AppleScript.
