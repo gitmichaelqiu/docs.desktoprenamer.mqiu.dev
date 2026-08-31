@@ -1,11 +1,12 @@
 # API Overview
 
-DesktopRenamer exposes two automation surfaces:
+DesktopRenamer exposes three automation surfaces:
 
-1. **SpaceAPI**, based on `DistributedNotificationCenter`, for observing current-space and space-list changes.
-2. **AppleScript**, for commands that switch, rename, rearrange, inspect, and move windows.
+1. **Structured SpaceAPI**, based on JSON-RPC 2.0 over `DistributedNotificationCenter`, for typed reads, operations, and state events.
+2. **Legacy SpaceAPI**, based on `DistributedNotificationCenter`, for existing current-space and space-list integrations.
+3. **AppleScript**, for commands that switch, rename, rearrange, inspect, and move windows.
 
-The API is enabled by default for existing installations and can be controlled from **Settings → General → Advanced**. Clients should handle the API-disabled state and verify the [contract version](versioning.md).
+The API is enabled by default for existing installations and can be controlled from **Settings → General → Advanced**. Clients should handle the API-disabled state and verify the [contract version](versioning.md). New integrations should start with the [Structured API](structured.md); the [legacy SpaceAPI](space-api.md) remains available for compatibility.
 
 ## Space identifiers
 
@@ -17,7 +18,7 @@ Commands that change spaces or windows are asynchronous where required by AppKit
 
 ## Compatibility
 
-The API version is independent of the DesktopRenamer app version. See [API Versioning](versioning.md) before consuming new fields or commands.
+The API version is independent of the DesktopRenamer app version. See [API Versioning](versioning.md) before consuming new fields or commands. Contract `1.0.0` uses JSON-RPC `2.0` as its message envelope.
 
 ## Integration sequence
 
@@ -33,6 +34,6 @@ Space and window operations are not transactional. A command can be accepted bef
 
 ## Error and permission model
 
-SpaceAPI has no synchronous error response. A missing response usually means that the API is disabled, the client subscribed after posting its request, or DesktopRenamer is still reconciling Mission Control. AppleScript reports `API Disabled` for commands with a defined return value; asynchronous commands can return before the requested operation succeeds.
+Legacy SpaceAPI has no synchronous error response. A missing legacy response usually means that the API is disabled, the client subscribed after posting a request, or DesktopRenamer is still reconciling Mission Control. Structured SpaceAPI returns JSON-RPC errors, including an explicit API-disabled code. AppleScript reports `API Disabled` for commands with a defined return value; asynchronous commands can return before the requested operation succeeds.
 
 Window and rearrangement operations additionally require Accessibility permission. Clients should surface a permission action instead of retrying indefinitely.
