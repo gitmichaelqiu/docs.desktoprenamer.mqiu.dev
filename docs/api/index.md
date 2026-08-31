@@ -34,6 +34,6 @@ Space and window operations are not transactional. A command can be accepted bef
 
 ## Error and permission model
 
-SpaceAPI has no synchronous error response. A missing response usually means that the API is disabled, the client subscribed after posting its request, or DesktopRenamer is still reconciling Mission Control. AppleScript reports `API Disabled` for commands with a defined return value; asynchronous commands can return before the requested operation succeeds.
+Legacy SpaceAPI has no synchronous error response. A missing legacy response usually means that the API is disabled, the client subscribed after posting a request, or DesktopRenamer is still reconciling Mission Control. Structured SpaceAPI returns JSON-RPC errors, including an explicit API-disabled code. AppleScript reports `API Disabled` for commands with a defined return value; asynchronous commands can return before the requested operation succeeds.
 
 Window and rearrangement operations additionally require Accessibility permission. Clients should surface a permission action instead of retrying indefinitely.
