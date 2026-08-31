@@ -14,7 +14,7 @@ The official [DesktopRenamer Raycast extension](https://www.raycast.com/michael_
 3. Grant DesktopRenamer Accessibility permission in **System Settings → Privacy & Security → Accessibility**.
 4. Open the extension and refresh its space and window data.
 
-The extension uses SpaceAPI for live space updates and AppleScript for commands that require arguments or window automation. It should be treated as an example of the integration sequence rather than a required dependency.
+The extension uses the structured JSON-RPC SpaceAPI for automatic and SpaceAPI-mode reads and operations. It validates UUID-correlated responses and falls back to the legacy SpaceAPI or AppleScript when an older DesktopRenamer build does not provide the structured channel. It should be treated as an example of the integration sequence rather than a required dependency.
 
 ## Full-screen windows
 
