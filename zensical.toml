@@ -35,7 +35,7 @@ nav = [
         { Changelog = "api/changelog.md" },
     ] },
     { "Raycast Integration" = "guides/raycast.md" },
-    { "Integration Troubleshooting" = "guides/troubleshooting.md" },
+    { "Troubleshooting" = "guides/troubleshooting.md" },
 ]
 
 extra_javascript = [
