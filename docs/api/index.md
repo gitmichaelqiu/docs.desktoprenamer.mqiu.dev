@@ -1,6 +1,6 @@
 # API Overview
 
-DesktopRenamer exposes two automation surfaces:
+DesktopRenamer exposes three automation surfaces:
 
 1. **Structured SpaceAPI**, based on JSON-RPC 2.0 over `DistributedNotificationCenter`, for typed reads, operations, and state events.
 2. **Legacy SpaceAPI**, based on `DistributedNotificationCenter`, for existing current-space and space-list integrations.

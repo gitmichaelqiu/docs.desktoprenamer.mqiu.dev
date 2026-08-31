@@ -38,6 +38,7 @@ spaceNumber: NSNumber
 spaceUUID: String
 spaceName: String
 spaceNumber: NSNumber
+displayID: String
 ```
 
 The app broadcasts updates when the active space or stored names change. A client should request an initial snapshot after subscribing, then reconcile subsequent broadcasts by identifier.
@@ -47,7 +48,7 @@ The app broadcasts updates when the active space or stored names change. A clien
 | Notification | `userInfo` | Notes |
 | --- | --- | --- |
 | `ReturnActiveSpace` | `apiVersion`, `spaceUUID`, `spaceName`, `spaceNumber` | `spaceNumber` is `0` for the synthetic `FULLSCREEN` value. |
-| `ReturnSpaceList` | `apiVersion`, `spaces` | `spaces` is an array of dictionaries using the three space fields above. |
+| `ReturnSpaceList` | `apiVersion`, `spaces` | `spaces` is an array of dictionaries using the four space fields above, including `displayID`. |
 | `ReturnAPIVersion` | `apiVersion` | Sent in response to `GetAPIVersion`. |
 | `ReturnAPIState` | `isEnabled` | A Boolean indicating whether the listener is active. |
 

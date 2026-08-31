@@ -77,6 +77,8 @@ Errors contain exactly one `error`. Parameter errors include machine-readable me
 }
 ```
 
+Every response includes the `id` member. It is the request's non-empty string ID for a normal response, or explicit `null` when the server cannot recover an ID from a malformed request. Clients should accept the latter while matching normal responses only by their original request ID.
+
 Events are JSON-RPC notifications and therefore have no ID or response. The current event is `stateChanged`:
 
 ```json
@@ -130,7 +132,7 @@ Each space object contains:
 }
 ```
 
-`getAllSpaces` returns an object with a `spaces` array. Use `getSpaceSnapshot` when the current-space values, revision, and timestamp are also needed.
+`getAllSpaces` returns an array of space objects. Use `getSpaceSnapshot` when the current-space values, revision, and timestamp are also needed.
 
 ### Window snapshot
 
@@ -157,7 +159,7 @@ Each space object contains:
 }
 ```
 
-`appPath` and `title` are nullable because macOS may not expose them. They can be omitted by a non-JSON representation such as AppleScript records. Titles, names, paths, Unicode, quotes, newlines, and delimiter characters are ordinary string values in this protocol and require no escaping beyond JSON encoding.
+`appPath` and `title` are nullable because macOS may not expose them. Structured JSON responses include these keys with `null` when unavailable; a non-JSON representation such as an AppleScript record may omit the corresponding property. Titles, names, paths, Unicode, quotes, newlines, and delimiter characters are ordinary string values in this protocol and require no escaping beyond JSON encoding.
 
 ### Operation result
 
@@ -180,7 +182,7 @@ Accepted asynchronous operations return:
 | `getSpaceSnapshot` | — | Space snapshot. |
 | `getCurrentSpaceName` | — | String. |
 | `getCurrentSpaceID` | — | Array of current space IDs. |
-| `getAllSpaces` | — | Object containing a `spaces` array. |
+| `getAllSpaces` | — | Array of space objects. |
 | `getWindows` | — | Window snapshot. |
 | `switchToSpace` | `spaceID` | Operation result. |
 | `renameCurrentSpace` | `name` | Operation result. |

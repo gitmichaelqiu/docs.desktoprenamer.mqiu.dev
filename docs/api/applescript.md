@@ -35,7 +35,7 @@ tell application "DesktopRenamer"
     get current space name
     get current space id
     get all spaces
-    rename current space to "Writing"
+    rename current space "Writing"
     switch to space "SPACE-ID"
     rename space "SPACE-ID" to "Research"
     rearrange space "SPACE-ID" direction "up"

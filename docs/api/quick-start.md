@@ -1,8 +1,50 @@
 # API Quick Start
 
-This example shows the complete request flow for a Swift client using SpaceAPI.
+This example shows the preferred request flow for a Swift client using the [structured JSON-RPC API](structured.md). The legacy example below remains useful for existing integrations and continues to work unchanged.
 
-New clients should use the [structured JSON-RPC API](structured.md). The legacy example below remains useful for existing integrations and continues to work unchanged.
+## Structured request
+
+Register the response observer before posting the request. Every structured response is carried as a JSON string in the `payload` user-info key and must be matched by its request ID.
+
+```swift
+import Foundation
+
+let center = DistributedNotificationCenter.default()
+let requestID = UUID().uuidString
+let responseName = Notification.Name("com.michaelqiu.DesktopRenamer.RPCResponse")
+let requestName = Notification.Name("com.michaelqiu.DesktopRenamer.RPCRequest")
+
+var observer: NSObjectProtocol?
+observer = center.addObserver(forName: responseName, object: nil, queue: .main) { notification in
+    guard let payload = notification.userInfo?["payload"] as? String,
+          let data = payload.data(using: .utf8),
+          let response = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+          response["id"] as? String == requestID
+    else { return }
+
+    print(response)
+    if let observer { center.removeObserver(observer) }
+}
+
+let request: [String: Any] = [
+    "jsonrpc": "2.0",
+    "id": requestID,
+    "method": "getSpaceSnapshot"
+]
+if let requestData = try? JSONSerialization.data(withJSONObject: request),
+   let payload = String(data: requestData, encoding: .utf8) {
+    center.post(
+        name: requestName,
+        object: nil,
+        userInfo: ["payload": payload],
+        deliverImmediately: true
+    )
+} else {
+    print("Could not encode SpaceAPI request")
+}
+```
+
+For production code, replace the compact `JSONSerialization` handling with a Codable model and keep the observer alive until the matching response or a timeout is received.
 
 ```swift
 import Foundation
