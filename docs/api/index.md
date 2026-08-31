@@ -2,10 +2,11 @@
 
 DesktopRenamer exposes two automation surfaces:
 
-1. **SpaceAPI**, based on `DistributedNotificationCenter`, for observing current-space and space-list changes.
-2. **AppleScript**, for commands that switch, rename, rearrange, inspect, and move windows.
+1. **Structured SpaceAPI**, based on JSON-RPC 2.0 over `DistributedNotificationCenter`, for typed reads, operations, and state events.
+2. **Legacy SpaceAPI**, based on `DistributedNotificationCenter`, for existing current-space and space-list integrations.
+3. **AppleScript**, for commands that switch, rename, rearrange, inspect, and move windows.
 
-The API is enabled by default for existing installations and can be controlled from **Settings → General → Advanced**. Clients should handle the API-disabled state and verify the [contract version](versioning.md).
+The API is enabled by default for existing installations and can be controlled from **Settings → General → Advanced**. Clients should handle the API-disabled state and verify the [contract version](versioning.md). New integrations should start with the [Structured API](structured.md); the [legacy SpaceAPI](space-api.md) remains available for compatibility.
 
 ## Space identifiers
 
@@ -17,7 +18,7 @@ Commands that change spaces or windows are asynchronous where required by AppKit
 
 ## Compatibility
 
-The API version is independent of the DesktopRenamer app version. See [API Versioning](versioning.md) before consuming new fields or commands.
+The API version is independent of the DesktopRenamer app version. See [API Versioning](versioning.md) before consuming new fields or commands. Contract `1.2.0` uses JSON-RPC `2.0` as its message envelope without changing the contract major version.
 
 ## Integration sequence
 

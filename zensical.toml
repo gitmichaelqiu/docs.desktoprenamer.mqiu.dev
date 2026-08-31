@@ -22,6 +22,7 @@ nav = [
         { Overview = "api/index.md" },
         { "Quick Start" = "api/quick-start.md" },
         { "API Versioning" = "api/versioning.md" },
+        { "Structured API" = "api/structured.md" },
         { SpaceAPI = "api/space-api.md" },
         { AppleScript = "api/applescript.md" },
         { "Window Automation" = "api/windows.md" },

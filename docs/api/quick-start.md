@@ -2,6 +2,8 @@
 
 This example shows the complete request flow for a Swift client using SpaceAPI.
 
+New clients should use the [structured JSON-RPC API](structured.md). The legacy example below remains useful for existing integrations and continues to work unchanged.
+
 ```swift
 import Foundation
 

@@ -1,5 +1,7 @@
 # SpaceAPI
 
+For new integrations, use the [Structured API](structured.md). This page documents the legacy notification names and delimiter-based payloads that remain available for existing clients.
+
 SpaceAPI uses `DistributedNotificationCenter`. The notification prefix is:
 
 ```text
