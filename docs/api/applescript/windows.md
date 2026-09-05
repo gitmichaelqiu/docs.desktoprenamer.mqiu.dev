@@ -10,7 +10,7 @@ tell application "DesktopRenamer"
 end tell
 ```
 
-The result is grouped by space and includes each visible application window. The exact text format is intended for the companion Raycast extension and may gain fields in future compatible API versions.
+The result is grouped by space and includes eligible regular-application windows assigned to known spaces. When macOS exposes the assignment, this includes windows on inactive spaces as well as the current spaces. The exact text format is intended for the companion Raycast extension and may gain fields in future compatible API versions.
 
 The current format is newline-delimited:
 
@@ -19,7 +19,7 @@ The current format is newline-delimited:
   windowID|pid|ownerName|appPath|title|isMinimized|isHidden
 ```
 
-Each space begins with `>`. Its following window rows begin with two spaces. Fields are positional; split space rows on `~` and window rows on `|`. Application paths and window titles can be empty. Window rows are emitted only for regular applications with valid Accessibility windows; background agents and stale window records are excluded.
+Each space begins with `>`. Its following window rows begin with two spaces. Fields are positional; split space rows on `~` and window rows on `|`. The formatter reserves empty fields, but the current enumerator emits only regular applications with a bundle path and a non-empty window title; background agents, invalid windows, and stale window records are filtered out. On active spaces, Accessibility window IDs are also used to reject stale records.
 
 The fields are:
 
@@ -62,4 +62,4 @@ end tell
 
 Supported action names include `close`, `minimize`, `hide`, `enterFullScreen`, `exitFullScreen`, `quit`, and `restore`.
 
-Actions that use Accessibility may first switch to the target space and wait for Mission Control to settle. Treat the command as fire-and-forget and refresh window data afterward.
+Actions that use Accessibility may first switch to the target space and wait for Mission Control to settle. `execute window action` waits for DesktopRenamer's action routine and returns `true`; the other movement and focus commands return without a result. Refresh window data afterward because the operating system may still be settling.

@@ -14,7 +14,7 @@ The legacy notification and delimiter-based APIs predate formal API versioning a
 
 Contract `1.0.0` is the first formally versioned API contract. It adds the structured JSON-RPC 2.0 transport, typed snapshots, typed AppleScript records, request validation, and revisioned state events. JSON-RPC `2.0` identifies the message envelope and is independent of the contract major version.
 
-The legacy notification channels and delimiter payloads remain supported. They are not converted in place, so existing clients can migrate independently. A legacy response's `apiVersion` identifies the app's current contract marker; it does not prove that the structured JSON-RPC channels are available. Use `getAPIInfo` to negotiate structured capabilities. See the [structured SpaceAPI](spaceapi/structured.md) and [legacy format](spaceapi/legacy-format.md) guides.
+The legacy notification channels, `PerformCommand`/`CommandResult` transport, and delimiter payloads remain supported. They are not converted in place, so existing clients can migrate independently. A legacy response's `apiVersion` identifies the app's current contract marker; it does not prove that the structured JSON-RPC channels are available. Use `getAPIInfo` to negotiate structured capabilities. See the [structured SpaceAPI](spaceapi/structured.md) and [legacy format](spaceapi/legacy-format.md) guides.
 
 Clients should accept unknown fields and should compare versions semantically rather than comparing app versions.
 

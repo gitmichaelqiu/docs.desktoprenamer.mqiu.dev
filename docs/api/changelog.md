@@ -11,7 +11,7 @@ Added an additive structured API:
 - UUID request correlation, strict parameter validation, stable error codes, and a 1 MiB payload limit.
 - Revisioned and timestamped state-change snapshots for client re-synchronization after dropped distributed notifications.
 - Typed AppleScript records and structured read commands.
-- Continued support for all legacy SpaceAPI notifications, payload keys, delimiter formats, and AppleScript commands.
+- Continued support for all legacy SpaceAPI notifications, including the `PerformCommand`/`CommandResult` channel, payload keys, delimiter formats, and AppleScript commands.
 
 ## Legacy format (pre-1.0.0)
 

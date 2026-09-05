@@ -19,8 +19,8 @@ Use **Reload Space Labels** from the menu bar or AppleScript. Display changes, s
 
 ## Rearrangement is unavailable
 
-Native rearrangement depends on private system behavior that can vary by macOS release. Verify Accessibility permission, ensure Mission Control is available, and wait for any current rearrangement to finish before starting another operation.
+Native rearrangement depends on private system behavior that can vary by macOS release. Ensure Mission Control is available and wait for any current rearrangement to finish before starting another operation. Space rearrangement uses a native macOS backend and does not use the window Accessibility path.
 
 ## API clients receive no notifications
 
-Check that the API is enabled in **Settings → General → Advanced** and that the client subscribes to `DistributedNotificationCenter` before posting its request notification. Always request a fresh snapshot after reconnecting.
+Check that **Enable SpaceAPI** is on in **Settings → General → Advanced** and that the client subscribes to `DistributedNotificationCenter` before posting its request notification. Always request a fresh snapshot after reconnecting.

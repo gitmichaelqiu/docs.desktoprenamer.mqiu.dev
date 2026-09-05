@@ -73,7 +73,7 @@ center.post(name: Notification.Name("\(prefix).GetSpaceList"), object: nil)
 RunLoop.main.run()
 ```
 
-The request notifications do not carry a payload. The response arrives through `userInfo`. Keep the observers alive for the lifetime of the client, and request fresh snapshots after reconnecting or receiving `ReturnAPIState` with `isEnabled == false` followed by `true`.
+The snapshot request notifications do not carry a payload. Their responses arrive through `userInfo`. The legacy `PerformCommand` request is different: it carries `requestID`, `command`, and either `argumentsJSON` or a string-only `arguments` dictionary, then receives a `CommandResult` notification. Keep observers alive for the lifetime of the client, and request fresh snapshots after reconnecting or receiving `ReturnAPIState` with `isEnabled == false` followed by `true`.
 
 For a one-off command, [AppleScript](applescript/index.md) is usually simpler:
 

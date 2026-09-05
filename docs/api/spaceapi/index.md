@@ -23,6 +23,6 @@ Distributed notifications are broadcasts and can be dropped. The structured prot
 
 ## Requirements
 
-SpaceAPI is available when **Settings → General → Advanced → API** is enabled. A client does not need to activate or bring DesktopRenamer to the front. Requests that switch or rearrange spaces are asynchronous; observe a later state update before assuming Mission Control has settled.
+SpaceAPI is available when **Settings → General → Advanced → Enable SpaceAPI** is enabled. A client does not need to activate or bring DesktopRenamer to the front. Requests that switch or rearrange spaces can complete asynchronously; observe a later state update before assuming Mission Control has settled.
 
 For a typed contract, transport details, methods, and error handling, see the [structured protocol](structured.md). For existing notification names and payload keys, see the [legacy format](legacy-format.md).

@@ -45,6 +45,9 @@ The `direction` parameter for `rearrange space` must be `up` or `down`.
 | `rename space` | Space ID, `to` text | Asynchronous; returns no value. |
 | `switch to space` | Space ID | Asynchronous; returns no value. |
 | `rearrange space` | Space ID, `direction` | Asynchronous; moves one position. |
+| `reload space labels` | — | Returns `true` after asking DesktopRenamer to reload its label windows. |
+
+The toggle commands return a Boolean containing the resulting state. `toggle labels` returns `true` only when both the active and preview labels are enabled. `toggle desktop visibility` changes the **Keep visible on desktop** preference for the labels.
 
 ## Label and launcher commands
 
@@ -62,7 +65,7 @@ end tell
 
 ## Errors and timing
 
-Commands that require Mission Control or Accessibility return before the operating-system action has necessarily finished. Refresh space or window data after an asynchronous command.
+Commands that change spaces or move windows return before the operating-system action has necessarily finished. `execute window action` waits for DesktopRenamer's action routine and returns `true`, but clients should still refresh window data after a state-changing command.
 
 Validation errors use standard script errors:
 
@@ -72,4 +75,4 @@ Validation errors use standard script errors:
 | `-2` | An argument is missing or invalid. |
 | `-3` | DesktopRenamer is not ready. |
 
-Invalid rearrangement directions set the script error to `Direction must be up or down`. Clients should inspect the script error number and string rather than treating every missing result as success. When the API is disabled, commands return `API Disabled` where a result is defined, or do nothing for asynchronous commands.
+Invalid rearrangement directions set the script error to `Direction must be up or down`. Clients should inspect the script error number and string rather than treating every missing result as success. When the API is disabled, commands set script error `-1` with `API Disabled`; read commands that have a text result also return that string, while Boolean commands return `false`.

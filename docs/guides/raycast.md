@@ -10,7 +10,7 @@ The official [DesktopRenamer Raycast extension](https://www.raycast.com/michael_
 ## Setup
 
 1. Install DesktopRenamer and the Raycast extension.
-2. Enable the API in **Settings → General → Advanced**.
+2. Enable **SpaceAPI** in **Settings → General → Advanced**.
 3. Grant DesktopRenamer Accessibility permission in **System Settings → Privacy & Security → Accessibility**.
 4. Open the extension and refresh its space and window data.
 

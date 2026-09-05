@@ -99,6 +99,8 @@ Events are JSON-RPC notifications and therefore have no ID or response. The curr
 }
 ```
 
+The app currently emits `activeSpaceChanged` and `spaceListChanged` as the event `reason`. The nested snapshot is a complete space snapshot, not a delta.
+
 ## Typed values
 
 ### Space
@@ -171,7 +173,7 @@ Accepted asynchronous operations return:
 }
 ```
 
-`accepted` means that DesktopRenamer accepted the operation for processing. It does not mean that Mission Control or Accessibility has finished applying it. Re-read a snapshot or wait for a later state event before updating a client UI. Toggle methods return a Boolean containing the new state.
+`accepted` means that DesktopRenamer accepted the operation for processing. It does not mean that Mission Control or Accessibility has finished applying it. Re-read a snapshot or wait for a later state event before updating a client UI. Toggle methods return a Boolean containing the new state; `toggleLabels` returns `true` only when both the active and preview labels are enabled.
 
 ## Method catalog
 
@@ -208,7 +210,32 @@ Accepted asynchronous operations return:
 {
   "contractVersion": "1.0.0",
   "jsonRPCVersion": "2.0",
-  "supportedMethods": ["getAPIInfo", "getSpaceSnapshot"],
+  "supportedMethods": [
+    "getAPIInfo",
+    "getAPIVersion",
+    "getSpaceSnapshot",
+    "getCurrentSpaceName",
+    "getCurrentSpaceID",
+    "getAllSpaces",
+    "switchToSpace",
+    "renameCurrentSpace",
+    "renameSpace",
+    "rearrangeSpace",
+    "moveWindowNext",
+    "moveWindowPrevious",
+    "moveWindowToSpace",
+    "reloadSpaceLabels",
+    "toggleMenubar",
+    "toggleLauncher",
+    "toggleLabels",
+    "toggleActiveLabel",
+    "togglePreviewLabel",
+    "toggleDesktopVisibility",
+    "getWindows",
+    "focusWindow",
+    "executeWindowAction",
+    "moveSpecificWindow"
+  ],
   "legacyNotifications": true,
   "legacyCompatibility": "supported",
   "eventNotifications": true,

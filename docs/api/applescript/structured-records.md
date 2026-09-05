@@ -18,11 +18,11 @@ end tell
 The records use native scripting-dictionary properties rather than packed strings:
 
 - `api information`: `contract version`, `JSON-RPC version`, `supported methods`, `legacy notifications`, `legacy compatibility`, `event notifications`, `event capabilities`, and `maximum payload bytes`.
-- `space`: `id`, `name`, `display ID`, `display name`, `number`, `full screen`, and optional app/shortcut properties.
+- `space`: `id`, `name`, `display ID`, `display name`, `number`, `full screen`, and optional `app name`, `app path`, and `global shortcut number` properties.
 - `space snapshot`: `API version`, `revision`, `timestamp`, `current space IDs`, `current space name`, and `spaces`.
 - `window`: `id`, `process ID`, `owner name`, optional `app path` and `title`, `space ID`, `minimized`, and `hidden`.
 - `window snapshot`: `API version`, `revision`, `timestamp`, `spaces`, and `windows`.
 
-Optional app paths and titles can be unavailable when macOS does not expose them. Structured snapshots include a revision and ISO 8601 timestamp so a client can identify the snapshot it read. The existing text commands remain compatibility aliases with their original command codes and asynchronous behavior.
+Optional app paths, titles, and full-screen metadata can be unavailable when macOS does not expose them. Structured snapshots include a revision and ISO 8601 timestamp so a client can identify the snapshot it read. The existing text commands remain available with their original command codes; their synchronous or asynchronous behavior is described in the [AppleScript overview](index.md) and [window automation guide](windows.md).
 
-For JSON-RPC operations, the equivalent structured result is an `operation result` object with an `accepted` Boolean. AppleScript operations that already return no value continue to return no value; acceptance does not imply that Mission Control or Accessibility has finished.
+The JSON-RPC equivalents of mutating commands return an `operation result` object with an `accepted` Boolean. AppleScript mutating commands do not return that record: space and window movement commands return no value, while toggle commands and `reload space labels` return Booleans. A returned value does not imply that Mission Control or Accessibility has finished settling.
