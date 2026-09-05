@@ -2,6 +2,11 @@
 
 DesktopRenamer distinguishes regular Mission Control spaces from fullscreen application spaces.
 
+<figure class="dr-visual">
+  <img src="../images/product/named-space-label.png" alt="A named Study space label displayed over the desktop" loading="lazy">
+  <figcaption>Space labels stay visible while you work, so the current context is always clear.</figcaption>
+</figure>
+
 Regular spaces can be named and manually reordered from **Settings → Spaces**. Drag a row to a new position, or use the launcher and AppleScript rearrangement commands.
 
 Fullscreen spaces are owned by the application that created them. Their displayed names are derived from that application, and macOS may recreate or reposition them during fullscreen transitions.

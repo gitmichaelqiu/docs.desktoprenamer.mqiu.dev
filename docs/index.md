@@ -7,6 +7,11 @@ hide:
 
 DesktopRenamer is a macOS menu bar application with a versioned automation interface for Mission Control spaces.
 
+<figure class="dr-visual dr-visual--hero">
+  <img src="images/product/mission-control-spaces.png" alt="Mission Control showing four named DesktopRenamer spaces" loading="eager">
+  <figcaption>Give every desktop a name you can recognize at a glance.</figcaption>
+</figure>
+
 It provides:
 
 - A versioned SpaceAPI and AppleScript automation surface.

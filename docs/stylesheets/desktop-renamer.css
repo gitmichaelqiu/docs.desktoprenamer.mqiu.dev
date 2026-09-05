@@ -153,6 +153,46 @@ code, kbd, pre {
     border: 1px solid var(--border-color);
 }
 
+/* =========================================
+   5b. PRODUCT VISUALS
+   ========================================= */
+.md-typeset figure.dr-visual {
+    margin: 2.5rem 0;
+}
+
+.md-typeset figure.dr-visual img {
+    display: block;
+    width: 100%;
+    max-width: 72rem;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid var(--border-color);
+    border-radius: 1.25rem;
+    background: var(--bg-secondary);
+    box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.12);
+}
+
+.md-typeset figure.dr-visual--hero img {
+    border-radius: 1.5rem;
+}
+
+.md-typeset figure.dr-visual--narrow img {
+    max-width: 48rem;
+}
+
+.md-typeset figure.dr-visual figcaption {
+    max-width: 52rem;
+    margin: 0.75rem auto 0;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    letter-spacing: -0.01em;
+    text-align: center;
+}
+
+[data-md-color-scheme="slate"] .md-typeset figure.dr-visual img {
+    box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.32);
+}
+
 [data-md-color-scheme="slate"] .md-typeset .admonition,
 [data-md-color-scheme="slate"] .md-typeset details {
     background: var(--bg-secondary);

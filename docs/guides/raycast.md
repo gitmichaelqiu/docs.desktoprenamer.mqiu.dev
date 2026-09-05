@@ -7,6 +7,11 @@ hide:
 
 The official [DesktopRenamer Raycast extension](https://www.raycast.com/michael_qiu/desktoprenamer) is a reference client for both API surfaces.
 
+<figure class="dr-visual">
+  <img src="../images/product/raycast-extension.png" alt="The DesktopRenamer Raycast extension page with its commands and screenshots" loading="lazy">
+  <figcaption>The companion extension exposes DesktopRenamer controls through Raycast.</figcaption>
+</figure>
+
 ## Setup
 
 1. Install DesktopRenamer and the Raycast extension.
