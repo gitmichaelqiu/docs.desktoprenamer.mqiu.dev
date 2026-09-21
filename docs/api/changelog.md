@@ -11,6 +11,7 @@ Added additive Space Lock capabilities to the structured contract:
 - `toggleLockSpace` and `restoreMovedWindows` JSON-RPC methods.
 - `lockStateChanged` and `movedWindowsChanged` state-event reasons.
 - Fullscreen spaces remain in the space list but cannot be locked.
+- Preferred all SpaceAPI distributed-notification names under `dev.mqiu.DesktopRenamer`, matching the current bundle identifier. The previous `com.michaelqiu.DesktopRenamer` namespace remains accepted and emitted only for compatibility.
 
 The legacy `getAllSpaces` delimiter payload remains unchanged and still returns six `~`-separated fields. The legacy JSON `getSpaceSnapshot` gains the additive `movedWindowsCount` and `isLocked` fields. Use structured JSON-RPC `getAllSpaces` or `get structured spaces` when you need typed records with lock state.
 

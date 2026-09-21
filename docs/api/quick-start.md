@@ -11,8 +11,8 @@ import Foundation
 
 let center = DistributedNotificationCenter.default()
 let requestID = UUID().uuidString
-let responseName = Notification.Name("com.michaelqiu.DesktopRenamer.RPCResponse")
-let requestName = Notification.Name("com.michaelqiu.DesktopRenamer.RPCRequest")
+let responseName = Notification.Name("dev.mqiu.DesktopRenamer.RPCResponse")
+let requestName = Notification.Name("dev.mqiu.DesktopRenamer.RPCRequest")
 
 var observer: NSObjectProtocol?
 observer = center.addObserver(forName: responseName, object: nil, queue: .main) { notification in
@@ -50,7 +50,7 @@ For production code, replace the compact `JSONSerialization` handling with a Cod
 import Foundation
 
 let center = DistributedNotificationCenter.default()
-let prefix = "com.michaelqiu.DesktopRenamer"
+let prefix = "dev.mqiu.DesktopRenamer"
 
 let activeName = Notification.Name("\(prefix).ReturnActiveSpace")
 let listName = Notification.Name("\(prefix).ReturnSpaceList")
@@ -74,6 +74,8 @@ RunLoop.main.run()
 ```
 
 The snapshot request notifications do not carry a payload. Their responses arrive through `userInfo`. The legacy `PerformCommand` request is different: it carries `requestID`, `command`, and either `argumentsJSON` or a string-only `arguments` dictionary, then receives a `CommandResult` notification. Keep observers alive for the lifetime of the client, and request fresh snapshots after reconnecting or receiving `ReturnAPIState` with `isEnabled == false` followed by `true`.
+
+These examples use the preferred `dev.mqiu.DesktopRenamer` notification namespace. The old `com.michaelqiu.DesktopRenamer` namespace is accepted and emitted only for compatibility with existing clients.
 
 For a one-off command, [AppleScript](applescript/index.md) is usually simpler:
 

@@ -10,9 +10,9 @@ Structured messages use dedicated `DistributedNotificationCenter` channels:
 
 | Channel | Direction | Purpose |
 | --- | --- | --- |
-| `com.michaelqiu.DesktopRenamer.RPCRequest` | Client → app | JSON-RPC requests. |
-| `com.michaelqiu.DesktopRenamer.RPCResponse` | App → client | Correlated JSON-RPC responses. |
-| `com.michaelqiu.DesktopRenamer.RPCEvent` | App → clients | JSON-RPC notifications for state changes. |
+| `dev.mqiu.DesktopRenamer.RPCRequest` | Client → app | JSON-RPC requests. |
+| `dev.mqiu.DesktopRenamer.RPCResponse` | App → client | Correlated JSON-RPC responses. |
+| `dev.mqiu.DesktopRenamer.RPCEvent` | App → clients | JSON-RPC notifications for state changes. |
 
 Every notification carries exactly one transport value in `userInfo`:
 
@@ -300,7 +300,7 @@ let requestID = UUID().uuidString
 var receivedResponse = false
 
 let observer = center.addObserver(
-    forName: Notification.Name("com.michaelqiu.DesktopRenamer.RPCResponse"),
+    forName: Notification.Name("dev.mqiu.DesktopRenamer.RPCResponse"),
     object: nil,
     queue: .main
 ) { notification in
@@ -323,7 +323,7 @@ do {
     let data = try JSONSerialization.data(withJSONObject: request)
     guard let payload = String(data: data, encoding: .utf8) else { throw CocoaError(.fileReadCorruptFile) }
     center.post(
-        name: Notification.Name("com.michaelqiu.DesktopRenamer.RPCRequest"),
+        name: Notification.Name("dev.mqiu.DesktopRenamer.RPCRequest"),
         object: nil,
         userInfo: ["payload": payload],
         deliverImmediately: true
@@ -345,7 +345,7 @@ The example demonstrates correlation only; production clients should decode and 
 
 Existing clients can continue using the [legacy format](legacy-format.md) without changes. To migrate incrementally:
 
-1. Keep the legacy listener as a fallback.
+1. Keep the legacy listener as a fallback. The preferred notification namespace is `dev.mqiu.DesktopRenamer`; `com.michaelqiu.DesktopRenamer` is retained only for compatibility.
 2. Request `getAPIInfo` on `RPCRequest`.
 3. Use structured snapshots and UUID request IDs when the reported contract is `1.0.0` or newer within the supported major version; clients that understand Space Lock can additionally inspect `isLocked`, `movedWindowsCount`, and the new methods.
 4. Fall back to the legacy notification and delimiter protocol only when the structured channel is unavailable or the client explicitly targets an older app.

@@ -7,7 +7,7 @@ The legacy command `getAllSpaces` is not the structured JSON-RPC method with the
 SpaceAPI uses `DistributedNotificationCenter`. The notification prefix is:
 
 ```text
-com.michaelqiu.DesktopRenamer
+dev.mqiu.DesktopRenamer
 ```
 
 ## Request and response notifications
@@ -20,7 +20,7 @@ com.michaelqiu.DesktopRenamer
 | `PerformCommand` | `CommandResult` | Execute a named legacy command and receive its result. |
 | — | `ReturnAPIState` | Receive API enabled/disabled changes. |
 
-All notification names use the prefix `com.michaelqiu.DesktopRenamer`. Requests should be posted only after response observers have been registered. Legacy request notifications do not use the structured `payload` key.
+New clients should use the prefix `dev.mqiu.DesktopRenamer`, which matches the current app bundle identifier. DesktopRenamer accepts and emits the `com.michaelqiu.DesktopRenamer` prefix only for compatibility with existing integrations. Requests should be posted only after response observers have been registered. Legacy request notifications do not use the structured `payload` key.
 
 ## Active-space payload
 
@@ -65,7 +65,7 @@ let arguments = try JSONSerialization.data(
 let argumentsJSON = String(decoding: arguments, as: UTF8.self)
 
 center.post(
-    name: Notification.Name("com.michaelqiu.DesktopRenamer.PerformCommand"),
+    name: Notification.Name("dev.mqiu.DesktopRenamer.PerformCommand"),
     object: nil,
     userInfo: [
         "requestID": requestID,
@@ -115,7 +115,7 @@ Snapshot and version requests have no request ID or error response. If one of th
 
 ```swift
 let center = DistributedNotificationCenter.default()
-let name = Notification.Name("com.michaelqiu.DesktopRenamer.ReturnActiveSpace")
+let name = Notification.Name("dev.mqiu.DesktopRenamer.ReturnActiveSpace")
 
 center.addObserver(forName: name, object: nil, queue: .main) { notification in
     let spaceID = notification.userInfo?["spaceUUID"] as? String
@@ -123,5 +123,5 @@ center.addObserver(forName: name, object: nil, queue: .main) { notification in
     print(spaceID ?? "", spaceName ?? "")
 }
 
-center.post(name: Notification.Name("com.michaelqiu.DesktopRenamer.GetActiveSpace"), object: nil)
+center.post(name: Notification.Name("dev.mqiu.DesktopRenamer.GetActiveSpace"), object: nil)
 ```
