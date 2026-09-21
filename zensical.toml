@@ -22,6 +22,7 @@ nav = [
         { Overview = "api/index.md" },
         { "Quick Start" = "api/quick-start.md" },
         { "API Versioning" = "api/versioning.md" },
+        { Changelog = "api/changelog.md" },
         { SpaceAPI = [
             { Overview = "api/spaceapi/index.md" },
             { "Structured protocol" = "api/spaceapi/structured.md" },
@@ -32,7 +33,6 @@ nav = [
             { "Structured records" = "api/applescript/structured-records.md" },
             { "Window automation" = "api/applescript/windows.md" },
         ] },
-        { Changelog = "api/changelog.md" },
     ] },
     { "Raycast Integration" = "guides/raycast.md" },
     { "Troubleshooting" = "guides/troubleshooting.md" },
