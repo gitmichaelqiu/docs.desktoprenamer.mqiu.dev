@@ -2,6 +2,18 @@
 
 This page records changes to the external contract, independently of DesktopRenamer’s app release version.
 
+## 1.1.0
+
+Added additive Space Lock capabilities to the structured contract:
+
+- `isLocked` on structured space records, including structured AppleScript records.
+- `movedWindowsCount` on space snapshots so clients can show the pending restore queue.
+- `toggleLockSpace` and `restoreMovedWindows` JSON-RPC methods.
+- `lockStateChanged` and `movedWindowsChanged` state-event reasons.
+- Fullscreen spaces remain in the space list but cannot be locked.
+
+The legacy `getAllSpaces` delimiter payload remains unchanged and still returns six `~`-separated fields. The legacy JSON `getSpaceSnapshot` gains the additive `movedWindowsCount` and `isLocked` fields. Use structured JSON-RPC `getAllSpaces` or `get structured spaces` when you need typed records with lock state.
+
 ## 1.0.0
 
 Added an additive structured API:

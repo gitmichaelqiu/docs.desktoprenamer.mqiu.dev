@@ -19,7 +19,7 @@ Commands that change spaces or windows are asynchronous where required by AppKit
 
 ## Compatibility
 
-The API version is independent of the DesktopRenamer app version. See [API Versioning](versioning.md) before consuming new fields or commands. Contract `1.0.0` uses JSON-RPC `2.0` as its message envelope.
+The API version is independent of the DesktopRenamer app version. See [API Versioning](versioning.md) before consuming new fields or commands. Contract `1.1.0` uses JSON-RPC `2.0` as its message envelope and adds Space Lock state and restore operations to the structured protocol.
 
 ## Integration sequence
 

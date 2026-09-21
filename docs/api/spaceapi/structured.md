@@ -1,6 +1,6 @@
 # Structured SpaceAPI protocol
 
-The structured SpaceAPI is the first formally versioned API contract. It is available from contract version **1.0.0** and uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope and is versioned independently from the API contract.
+The structured SpaceAPI is available from contract version **1.0.0** and currently reports **1.1.0**. It uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope and is versioned independently from the API contract.
 
 The legacy SpaceAPI notifications, user-info keys, and delimiter-based payloads remain supported. New integrations should prefer this structured protocol. AppleScript is documented separately in the [AppleScript guide](../applescript/index.md).
 
@@ -88,18 +88,21 @@ Events are JSON-RPC notifications and therefore have no ID or response. The curr
   "params": {
     "reason": "activeSpaceChanged",
     "snapshot": {
-      "apiVersion": "1.0.0",
+      "apiVersion": "1.1.0",
       "revision": 18,
       "timestamp": "2026-08-31T07:00:00Z",
       "currentSpaceIDs": ["SPACE-ID"],
+      "currentSpaceID": "SPACE-ID",
+      "currentDisplayID": "DISPLAY-ID",
       "currentSpaceName": "Writing",
+      "movedWindowsCount": 0,
       "spaces": []
     }
   }
 }
 ```
 
-The app currently emits `activeSpaceChanged` and `spaceListChanged` as the event `reason`. The nested snapshot is a complete space snapshot, not a delta.
+The app currently emits `activeSpaceChanged`, `spaceListChanged`, `lockStateChanged`, and `movedWindowsChanged` as the event `reason`. The nested snapshot is a complete space snapshot, not a delta.
 
 ## Typed values
 
@@ -118,23 +121,27 @@ Each space object contains:
 | `appName` | string or `null` | Full-screen app name, when available. |
 | `appPath` | string or `null` | Full-screen app path, when available. |
 | `globalShortcutNumber` | integer or `null` | Configured global shortcut number, when available. |
+| `isLocked` | Boolean | Whether Space Lock is enabled for this space. Fullscreen spaces are always `false` and cannot be locked. |
 
 ### Space snapshot
 
-`getSpaceSnapshot` returns a versioned snapshot:
+`getSpaceSnapshot` returns a versioned snapshot. `movedWindowsCount` is the number of windows currently queued for restoration by Space Lock:
 
 ```json
 {
-  "apiVersion": "1.0.0",
+  "apiVersion": "1.1.0",
   "revision": 18,
   "timestamp": "2026-08-31T07:00:00Z",
   "currentSpaceIDs": ["SPACE-ID"],
+  "currentSpaceID": "SPACE-ID",
+  "currentDisplayID": "DISPLAY-ID",
   "currentSpaceName": "Writing",
+  "movedWindowsCount": 0,
   "spaces": [/* space objects */]
 }
 ```
 
-`getAllSpaces` returns an array of space objects. Use `getSpaceSnapshot` when the current-space values, revision, and timestamp are also needed.
+Structured JSON-RPC `getAllSpaces` returns an array of space objects. This is distinct from the legacy `PerformCommand`/AppleScript `get all spaces` command, which returns newline-delimited six-field strings. Use `getSpaceSnapshot` when the current-space values, restore count, revision, and timestamp are also needed.
 
 ### Window snapshot
 
@@ -142,7 +149,7 @@ Each space object contains:
 
 ```json
 {
-  "apiVersion": "1.0.0",
+  "apiVersion": "1.1.0",
   "revision": 18,
   "timestamp": "2026-08-31T07:00:00Z",
   "spaces": [/* space objects */],
@@ -154,6 +161,7 @@ Each space object contains:
       "appPath": "/Applications/Example.app",
       "title": "Document | Notes",
       "spaceID": "SPACE-ID",
+      "spaceIDs": ["SPACE-ID"],
       "isMinimized": false,
       "isHidden": false
     }
@@ -173,7 +181,7 @@ Accepted asynchronous operations return:
 }
 ```
 
-`accepted` means that DesktopRenamer accepted the operation for processing. It does not mean that Mission Control or Accessibility has finished applying it. Re-read a snapshot or wait for a later state event before updating a client UI. Toggle methods return a Boolean containing the new state; `toggleLabels` returns `true` only when both the active and preview labels are enabled.
+`accepted` means that DesktopRenamer accepted the operation for processing. It does not mean that Mission Control or Accessibility has finished applying it. Re-read a snapshot or wait for a later state event before updating a client UI. Boolean-returning toggle methods contain the new state; `toggleLabels` returns `true` only when both the active and preview labels are enabled.
 
 ## Method catalog
 
@@ -187,6 +195,8 @@ Accepted asynchronous operations return:
 | `getAllSpaces` | — | Array of space objects. |
 | `getWindows` | — | Window snapshot. |
 | `switchToSpace` | `spaceID` | Operation result. |
+| `toggleLockSpace` | `spaceID` | Operation result. Rejects fullscreen spaces. |
+| `restoreMovedWindows` | — | Operation result. Restores windows moved by Space Lock. |
 | `renameCurrentSpace` | `name` | Operation result. |
 | `renameSpace` | `spaceID`, `name` | Operation result. |
 | `rearrangeSpace` | `spaceID`, `direction` (`up` or `down`) | Operation result. |
@@ -198,7 +208,7 @@ Accepted asynchronous operations return:
 | `toggleDesktopVisibility` | — | New desktop-visibility Boolean. |
 | `focusWindow` | `windowID`, `pid` | Operation result. |
 | `executeWindowAction` | `windowID`, `pid`, `action` | Operation result. |
-| `moveSpecificWindow` | `windowID`, optional `pid`, `fromSpaceID`, `targetSpaceID` | Operation result. |
+| `moveSpecificWindow` | `windowID`, optional `pid`, `fromSpaceID`, `targetSpaceID`, optional `isMinimized`, optional `isHidden` | Operation result. |
 
 `windowID` and `pid` are integers. The optional `pid` in `moveSpecificWindow` can be omitted only when both space IDs are numeric values usable by the low-level move operation. Unknown method parameters are rejected rather than silently ignored.
 
@@ -208,7 +218,7 @@ Accepted asynchronous operations return:
 
 ```json
 {
-  "contractVersion": "1.0.0",
+  "contractVersion": "1.1.0",
   "jsonRPCVersion": "2.0",
   "supportedMethods": [
     "getAPIInfo",
@@ -218,6 +228,8 @@ Accepted asynchronous operations return:
     "getCurrentSpaceID",
     "getAllSpaces",
     "switchToSpace",
+    "toggleLockSpace",
+    "restoreMovedWindows",
     "renameCurrentSpace",
     "renameSpace",
     "rearrangeSpace",
@@ -245,6 +257,8 @@ Accepted asynchronous operations return:
 ```
 
 Clients should inspect the complete `supportedMethods` array rather than assuming that a future minor version supports every method. Unknown response fields must be ignored so compatible clients can survive additive fields.
+
+The `toggleLockSpace` method returns an accepted operation result. The lock state is reported in the next snapshot or in a `stateChanged` event with reason `lockStateChanged`; it is not returned as a Boolean by JSON-RPC.
 
 ## Validation and errors
 
@@ -333,6 +347,6 @@ Existing clients can continue using the [legacy format](legacy-format.md) withou
 
 1. Keep the legacy listener as a fallback.
 2. Request `getAPIInfo` on `RPCRequest`.
-3. Use structured snapshots and UUID request IDs when the reported contract is `1.0.0` or newer.
+3. Use structured snapshots and UUID request IDs when the reported contract is `1.0.0` or newer within the supported major version; clients that understand Space Lock can additionally inspect `isLocked`, `movedWindowsCount`, and the new methods.
 4. Fall back to the legacy notification and delimiter protocol only when the structured channel is unavailable or the client explicitly targets an older app.
 5. Do not split structured names or titles on `~`, `|`, or newlines.

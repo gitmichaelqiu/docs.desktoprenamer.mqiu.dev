@@ -1,6 +1,6 @@
 # API versioning
 
-The current external API contract version is **1.0.0**.
+The current external API contract version is **1.1.0**.
 
 This version is intentionally independent from DesktopRenamer's marketing and build version. A client can therefore be compatible with an API contract even when the app receives an ordinary bug-fix release.
 
@@ -12,7 +12,7 @@ This version is intentionally independent from DesktopRenamer's marketing and bu
 
 The legacy notification and delimiter-based APIs predate formal API versioning and are treated as **pre-1.0.0 compatibility surfaces**. Their existing names, payloads, and behavior remain supported.
 
-Contract `1.0.0` is the first formally versioned API contract. It adds the structured JSON-RPC 2.0 transport, typed snapshots, typed AppleScript records, request validation, and revisioned state events. JSON-RPC `2.0` identifies the message envelope and is independent of the contract major version.
+Contract `1.0.0` was the first formally versioned API contract. It added the structured JSON-RPC 2.0 transport, typed snapshots, typed AppleScript records, request validation, and revisioned state events. Contract `1.1.0` adds Space Lock capabilities without changing legacy delimiter shapes or the JSON-RPC envelope; the legacy JSON snapshot receives additive fields. JSON-RPC `2.0` identifies the message envelope and is independent of the contract major version.
 
 The legacy notification channels, `PerformCommand`/`CommandResult` transport, and delimiter payloads remain supported. They are not converted in place, so existing clients can migrate independently. A legacy response's `apiVersion` identifies the app's current contract marker; it does not prove that the structured JSON-RPC channels are available. Use `getAPIInfo` to negotiate structured capabilities. See the [structured SpaceAPI](spaceapi/structured.md) and [legacy format](spaceapi/legacy-format.md) guides.
 
