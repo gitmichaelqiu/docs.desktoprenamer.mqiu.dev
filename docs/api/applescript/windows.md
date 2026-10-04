@@ -50,7 +50,7 @@ tell application "DesktopRenamer"
 end tell
 ```
 
-The process ID is optional for `move specific window` when both space arguments are numeric ManagedSpaceIDs. Supplying it is recommended because the Accessibility path handles fullscreen and cross-display cases more reliably.
+The process ID is optional; DesktopRenamer resolves it from the window ID when omitted. Use the persistent space IDs from structured records for `from space` and `to space`. Supplying the process ID is recommended because the Accessibility path handles fullscreen and cross-display cases more reliably.
 
 ## Window actions
 

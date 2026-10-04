@@ -11,7 +11,7 @@ Use the navigation to choose the integration surface first. The same concepts—
 
 ## Space identifiers
 
-Use the SpaceAPI space snapshot or AppleScript's `get all spaces` command to obtain current identifiers. Do not persist a space ID indefinitely: macOS can replace identifiers after display or Mission Control changes.
+Structured SpaceAPI and structured AppleScript records expose DesktopRenamer-owned space IDs. These IDs are persisted with each detected space and remain stable when macOS reassigns its internal ManagedSpaceID, as long as macOS continues to identify the same space. A deleted and recreated space receives a new ID when macOS reports its new persistent identity or DesktopRenamer observes it as a distinct space. If macOS provides no persistent identity, the ID is guaranteed only for the current boot and is renewed after reboot rather than guessed from position. Legacy SpaceAPI payloads and AppleScript's `get all spaces` command still use macOS ManagedSpaceIDs; treat those legacy IDs as temporary and do not persist them.
 
 ## Main-thread behavior
 
@@ -19,7 +19,7 @@ Commands that change spaces or windows are asynchronous where required by AppKit
 
 ## Compatibility
 
-The API version is independent of the DesktopRenamer app version. See [API Versioning](versioning.md) before consuming new fields or commands. Contract `1.1.0` uses JSON-RPC `2.0` as its message envelope and adds Space Lock state and restore operations to the structured protocol.
+The API version is independent of the DesktopRenamer app version. See [API Versioning](versioning.md) before consuming new fields or commands. Contract `2.0.0` uses JSON-RPC `2.0` as its message envelope and makes structured space IDs persistent DesktopRenamer identities.
 
 ## Integration sequence
 
