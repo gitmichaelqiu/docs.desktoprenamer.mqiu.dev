@@ -2,12 +2,13 @@
 
 This page records changes to the external contract, independently of DesktopRenamer’s app release version.
 
-## 2.0.0
+## 1.2.0
 
 Changed structured space identity semantics:
 
-- The `id` field in structured space records is now an opaque ID generated and persisted by DesktopRenamer rather than the current macOS ManagedSpaceID.
+- The `id` field in structured space records is now an opaque ID generated and persisted by DesktopRenamer rather than the current macOS ManagedSpaceID. Clients should treat it as a string and pass it through unchanged.
 - Structured current-space IDs, window `spaceID`/`spaceIDs`, and space-operation parameters use the DesktopRenamer-owned ID.
+- Structured operations also accept a ManagedSpaceID while it still identifies a current space, to ease migration for clients that cached IDs before upgrading. New integrations should use the stable IDs from structured responses.
 - Structured AppleScript records use the same persistent IDs. Legacy notifications, delimiter payloads, and AppleScript's `get all spaces` continue to expose ManagedSpaceIDs for compatibility.
 - IDs are retained across app and system restarts, reordering, and display changes while macOS continues to report the same persistent space UUID. A deleted and recreated space gets a new ID when macOS reports its new persistent identity or DesktopRenamer observes it as distinct. For spaces without a persistent UUID, the ID is guaranteed only during the current boot and is renewed after reboot rather than guessing by position.
 

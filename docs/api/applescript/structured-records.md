@@ -1,10 +1,10 @@
 # AppleScript structured records
 
-DesktopRenamer's scripting dictionary is available to Script Editor after the app is installed. This page covers typed records introduced in contract `1.0.0`, Space Lock fields added in `1.1.0`, and persistent space IDs in `2.0.0`; see the [AppleScript overview](index.md) for common commands and the [window automation guide](windows.md) for window operations.
+DesktopRenamer's scripting dictionary is available to Script Editor after the app is installed. This page covers typed records introduced in contract `1.0.0`, Space Lock fields added in `1.1.0`, and persistent space IDs in `1.2.0`; see the [AppleScript overview](index.md) for common commands and the [window automation guide](windows.md) for window operations.
 
 ## Structured records
 
-Contract `1.0.0` adds typed records alongside the existing commands. Contract `1.1.0` adds Space Lock state and restore-queue information. Contract `2.0.0` changes the structured `space.id` and window space references to DesktopRenamer-owned persistent IDs. The structured commands are:
+Contract `1.0.0` adds typed records alongside the existing commands. Contract `1.1.0` adds Space Lock state and restore-queue information. Contract `1.2.0` changes the structured `space.id` and window space references to DesktopRenamer-owned persistent IDs. The structured commands are:
 
 ```applescript
 tell application "DesktopRenamer"
@@ -19,11 +19,11 @@ The records use native scripting-dictionary properties rather than packed string
 
 - `api information`: `contract version`, `JSON-RPC version`, `supported methods`, `legacy notifications`, `legacy compatibility`, `event notifications`, `event capabilities`, and `maximum payload bytes`.
 - `space`: `id`, `name`, `display ID`, `display name`, `number`, `full screen`, `locked`, and optional `app name`, `app path`, and `global shortcut number` properties.
-- `space snapshot`: `API version`, `revision`, `timestamp`, `current space IDs`, optional `current space ID`, `current display ID`, `current space name`, `moved windows count`, and `spaces`.
+- `space snapshot`: `API version`, `revision`, `timestamp`, `current space IDs`, `current space ID`, `current display ID`, `current space name`, `moved windows count`, and `spaces`.
 - `window`: `id`, `process ID`, `owner name`, optional `app path` and `title`, `space ID`, `space IDs`, `minimized`, and `hidden`.
 - `window snapshot`: `API version`, `revision`, `timestamp`, `spaces`, and `windows`.
 
-Optional app paths, titles, current space ID, and full-screen metadata can be unavailable when macOS does not expose them or the current space has not yet been reconciled. Structured snapshots include a revision and ISO 8601 timestamp so a client can identify the snapshot it read. The existing text commands remain available with their original command codes; their synchronous or asynchronous behavior is described in the [AppleScript overview](index.md) and [window automation guide](windows.md).
+Optional app paths, titles, and full-screen metadata can be unavailable when macOS does not expose them. If the current space has not yet been reconciled, the snapshot's `current space ID` is an empty string. Structured snapshots include a revision and ISO 8601 timestamp so a client can identify the snapshot it read. The existing text commands remain available with their original command codes; their synchronous or asynchronous behavior is described in the [AppleScript overview](index.md) and [window automation guide](windows.md).
 
 Structured record IDs are DesktopRenamer-owned. The legacy `get all spaces` and `get current space id` commands continue to return macOS ManagedSpaceIDs.
 
