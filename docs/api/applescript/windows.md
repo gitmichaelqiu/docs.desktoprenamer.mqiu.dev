@@ -25,7 +25,7 @@ The fields are:
 
 | Field | Meaning |
 | --- | --- |
-| `spaceID` | Managed space identifier. |
+| `spaceID` | macOS ManagedSpaceID in this legacy text format; use [structured records](structured-records.md) for DesktopRenamer-owned IDs. |
 | `spaceName` | DesktopRenamer’s current name for the space. |
 | `displayName` | macOS display name. |
 | `number` | Space number on that display. |

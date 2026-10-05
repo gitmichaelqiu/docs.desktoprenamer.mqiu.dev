@@ -17,7 +17,7 @@ When **Keep full-screen spaces next to source desktop** is enabled, DesktopRenam
 
 ## Limitations
 
-- Space identifiers are system-managed and can change after display changes, sleep/wake, or Mission Control updates.
+- macOS ManagedSpaceIDs exposed by legacy APIs are system-managed and can change after display changes, sleep/wake, or Mission Control updates. Structured SpaceAPI and AppleScript records instead use DesktopRenamer-owned IDs; see [Space identifiers](../api/index.md#space-identifiers).
 - Rearrangement requires a macOS version that exposes the native operation.
 - Window movement across fullscreen spaces may temporarily enter or exit fullscreen to complete the operation.
 - Multiple displays have independent space sequences.
