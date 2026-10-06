@@ -17,10 +17,10 @@ end tell
 `get all spaces` returns one line per space with fields separated by `~`:
 
 ```text
-UUID~Name~DisplayName~Number~IsFullscreen~AppPath
+ManagedSpaceID~Name~DisplayName~Number~IsFullscreen~AppPath
 ```
 
-The result is sorted by display and space number. Names and paths may be empty. Space identifiers are not guaranteed to survive display changes or Mission Control recreation, so use a fresh result before issuing a later command.
+The result is sorted by display and space number. Names and paths may be empty. The first field is macOS's ManagedSpaceID, not a persistent DesktopRenamer ID; it may change after display changes or Mission Control recreation, so refresh this result before using a legacy ID in a command. For persisted references, use the DesktopRenamer-owned IDs in [structured AppleScript records](structured-records.md).
 
 This is the legacy text command. It is different from structured JSON-RPC `getAllSpaces` and `get structured spaces`: those return typed space records and include `locked`/`isLocked` state.
 

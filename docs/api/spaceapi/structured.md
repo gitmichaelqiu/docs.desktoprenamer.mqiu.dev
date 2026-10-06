@@ -1,6 +1,6 @@
 # Structured SpaceAPI protocol
 
-The structured SpaceAPI is available from contract version **1.0.0** and currently reports **1.1.0**. It uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope and is versioned independently from the API contract.
+The structured SpaceAPI is available from contract version **1.0.0** and currently reports **1.2.0**. It uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope and is versioned independently from the API contract.
 
 The legacy SpaceAPI notifications, user-info keys, and delimiter-based payloads remain supported. New integrations should prefer this structured protocol. AppleScript is documented separately in the [AppleScript guide](../applescript/index.md).
 
@@ -88,7 +88,7 @@ Events are JSON-RPC notifications and therefore have no ID or response. The curr
   "params": {
     "reason": "activeSpaceChanged",
     "snapshot": {
-      "apiVersion": "1.1.0",
+      "apiVersion": "1.2.0",
       "revision": 18,
       "timestamp": "2026-08-31T07:00:00Z",
       "currentSpaceIDs": ["SPACE-ID"],
@@ -112,7 +112,7 @@ Each space object contains:
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | string | Current Mission Control managed-space identifier. |
+| `id` | string | Opaque DesktopRenamer-owned identity for this space. Use it as the persistent key and in structured operation parameters. |
 | `name` | string | User-facing name. |
 | `displayID` | string | Display identifier. |
 | `displayName` | string | Localized display name when available. |
@@ -123,13 +123,17 @@ Each space object contains:
 | `globalShortcutNumber` | integer or `null` | Configured global shortcut number, when available. |
 | `isLocked` | Boolean | Whether Space Lock is enabled for this space. Fullscreen spaces are always `false` and cannot be locked. |
 
+DesktopRenamer creates and stores this ID independently of macOS's numeric ManagedSpaceID. It is retained across app and system restarts, space reordering, and display changes when macOS reports the same persistent space UUID. A deleted and recreated space receives a new ID when macOS reports its new persistent identity or DesktopRenamer observes it as a distinct space. If a space has no persistent UUID, its ID is guaranteed only for the current boot and is renewed after reboot rather than guessed from position or risking assigning saved client data to the wrong space. Structured operations also accept a ManagedSpaceID while it still identifies a current space, to ease migration; use the stable `id` from structured responses for new integrations. The legacy API continues to expose ManagedSpaceIDs in its original output formats.
+
+Use the exact `id` from a current structured snapshot for structured operation parameters. Unknown or stale IDs are rejected rather than being interpreted as a different space. For transitional compatibility, an old ManagedSpaceID is accepted only while it still identifies a current space.
+
 ### Space snapshot
 
 `getSpaceSnapshot` returns a versioned snapshot. `movedWindowsCount` is the number of windows currently queued for restoration by Space Lock:
 
 ```json
 {
-  "apiVersion": "1.1.0",
+  "apiVersion": "1.2.0",
   "revision": 18,
   "timestamp": "2026-08-31T07:00:00Z",
   "currentSpaceIDs": ["SPACE-ID"],
@@ -141,6 +145,8 @@ Each space object contains:
 }
 ```
 
+`currentSpaceID` is the DesktopRenamer ID for the current space, or an empty string while that space is not yet present in the reconciled space list. `currentSpaceIDs` includes only current spaces with a reconciled structured ID; it never falls back to exposing a macOS ManagedSpaceID.
+
 Structured JSON-RPC `getAllSpaces` returns an array of space objects. This is distinct from the legacy `PerformCommand`/AppleScript `get all spaces` command, which returns newline-delimited six-field strings. Use `getSpaceSnapshot` when the current-space values, restore count, revision, and timestamp are also needed.
 
 ### Window snapshot
@@ -149,7 +155,7 @@ Structured JSON-RPC `getAllSpaces` returns an array of space objects. This is di
 
 ```json
 {
-  "apiVersion": "1.1.0",
+  "apiVersion": "1.2.0",
   "revision": 18,
   "timestamp": "2026-08-31T07:00:00Z",
   "spaces": [/* space objects */],
@@ -170,6 +176,8 @@ Structured JSON-RPC `getAllSpaces` returns an array of space objects. This is di
 ```
 
 `appPath` and `title` are nullable because macOS may not expose them. Structured JSON responses include these keys with `null` when unavailable; a non-JSON representation such as an AppleScript record may omit the corresponding property. Titles, names, paths, Unicode, quotes, newlines, and delimiter characters are ordinary string values in this protocol and require no escaping beyond JSON encoding.
+
+Window records whose primary space is not yet in the reconciled space list are omitted rather than returning a macOS ManagedSpaceID in `spaceID`. Unreconciled additional memberships are omitted from `spaceIDs`.
 
 ### Operation result
 
@@ -210,7 +218,7 @@ Accepted asynchronous operations return:
 | `executeWindowAction` | `windowID`, `pid`, `action` | Operation result. |
 | `moveSpecificWindow` | `windowID`, optional `pid`, `fromSpaceID`, `targetSpaceID`, optional `isMinimized`, optional `isHidden` | Operation result. |
 
-`windowID` and `pid` are integers. The optional `pid` in `moveSpecificWindow` can be omitted only when both space IDs are numeric values usable by the low-level move operation. Unknown method parameters are rejected rather than silently ignored.
+`windowID` and `pid` are integers. Space IDs in these parameters are the DesktopRenamer-owned IDs returned by structured snapshots. The optional `pid` in `moveSpecificWindow` can be omitted when DesktopRenamer can resolve the process from `windowID`. Unknown method parameters are rejected rather than silently ignored.
 
 ## API information
 
@@ -218,7 +226,7 @@ Accepted asynchronous operations return:
 
 ```json
 {
-  "contractVersion": "1.1.0",
+  "contractVersion": "1.2.0",
   "jsonRPCVersion": "2.0",
   "supportedMethods": [
     "getAPIInfo",

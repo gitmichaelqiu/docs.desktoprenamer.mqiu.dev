@@ -82,9 +82,9 @@ The command channel accepts the legacy command names supported by the app, inclu
 
 Successful `result` strings use these legacy shapes:
 
-- `getSpaceSnapshot` returns JSON with `apiVersion`, `currentSpaceIDs`, `currentSpaceName`, `movedWindowsCount`, and `spaces`. It has no structured `revision` or `timestamp`; its space records contain `id`, `name`, `displayID`, `displayName`, `number`, `isFullscreen`, `isLocked`, and an optional `appPath`. These are additive fields for clients that already parse the legacy JSON snapshot.
-- `getAllSpaces` returns newline-delimited `ID~Name~DisplayName~Number~IsFullscreen~AppPath` records, and `getWindows` returns the delimiter format described in [AppleScript window automation](../applescript/windows.md).
-- `getCurrentSpaceID` returns comma-separated current space IDs. `getAPIVersion` and `getCurrentSpaceName` return text.
+- `getSpaceSnapshot` returns JSON with `apiVersion`, `currentSpaceIDs`, `currentSpaceName`, `movedWindowsCount`, and `spaces`. It has no structured `revision` or `timestamp`; its space records contain `id`, `name`, `displayID`, `displayName`, `number`, `isFullscreen`, `isLocked`, and an optional `appPath`. The `id`, `currentSpaceID`, and `currentSpaceIDs` values are macOS ManagedSpaceIDs in this legacy response; use the structured protocol for DesktopRenamer-owned IDs. These fields are additive for clients that already parse the legacy JSON snapshot.
+- `getAllSpaces` returns newline-delimited `ManagedSpaceID~Name~DisplayName~Number~IsFullscreen~AppPath` records, and `getWindows` returns the delimiter format described in [AppleScript window automation](../applescript/windows.md). These legacy IDs are macOS ManagedSpaceIDs, not persistent DesktopRenamer IDs.
+- `getCurrentSpaceID` returns comma-separated macOS ManagedSpaceIDs. `getAPIVersion` and `getCurrentSpaceName` return text.
 - Mutating commands return an empty string. The six toggle commands return the new Boolean state as the string `true` or `false`.
 
 `CommandResult` always includes `requestID`, `apiVersion`, and `success`. Successful results also include a string `result` (which may be empty); failures include an `error` string instead:
