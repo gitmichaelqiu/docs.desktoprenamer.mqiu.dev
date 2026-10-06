@@ -22,6 +22,8 @@ ManagedSpaceID~Name~DisplayName~Number~IsFullscreen~AppPath
 
 The result is sorted by display and space number. Names and paths may be empty. The first field is macOS's ManagedSpaceID, not a persistent DesktopRenamer ID; it may change after display changes or Mission Control recreation, so refresh this result before using a legacy ID in a command. For persisted references, use the DesktopRenamer-owned IDs in [structured AppleScript records](structured-records.md).
 
+The legacy text commands that accept a space ID—including `switch to space`, `rename space`, `rearrange space`, `toggle lock space`, and the [window commands](windows.md)—expect a current ManagedSpaceID. They do not accept the persistent IDs from structured records. For mutations using persistent IDs, use the corresponding [structured SpaceAPI operations](../spaceapi/structured.md) where available.
+
 This is the legacy text command. It is different from structured JSON-RPC `getAllSpaces` and `get structured spaces`: those return typed space records and include `locked`/`isLocked` state.
 
 ## Space commands

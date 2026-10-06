@@ -11,9 +11,17 @@ Regular spaces can be named and manually reordered from **Settings → Spaces**.
 
 Fullscreen spaces are owned by the application that created them. Their displayed names are derived from that application, and macOS may recreate or reposition them during fullscreen transitions.
 
+## Launcher and multiple displays
+
+The native launcher groups spaces by display. When it opens, it shows spaces for the display under the pointer; if that display has no spaces, it falls back to the current display. In the launcher’s Command-K actions, **Move Space Up** and **Move Space Down** can reorder fullscreen spaces as well as regular spaces. Fullscreen spaces remain app-owned and cannot be renamed or locked.
+
 ## Automatic fullscreen placement
 
 When **Keep full-screen spaces next to source desktop** is enabled, DesktopRenamer attempts to place a newly created fullscreen space immediately after the desktop from which the app entered fullscreen. The operation is asynchronous because Mission Control state is not stable during the transition.
+
+## Space Lock and window restoration
+
+When an app leaves a locked space automatically, DesktopRenamer attempts to move its active window back to that space and records the move for later restoration. Enable **Automatically restore windows when unlocking** in **Settings → Switch** to return tracked windows when unlocking their original space. With this option on, unlocking all spaces restores all tracked windows. Restoration runs asynchronously and depends on the windows and spaces still being available.
 
 ## Limitations
 

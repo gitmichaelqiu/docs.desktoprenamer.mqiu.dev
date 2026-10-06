@@ -25,7 +25,7 @@ The fields are:
 
 | Field | Meaning |
 | --- | --- |
-| `spaceID` | macOS ManagedSpaceID in this legacy text format; use [structured records](structured-records.md) for DesktopRenamer-owned IDs. |
+| `spaceID` | macOS ManagedSpaceID in this legacy text format. Structured records expose durable IDs, but these legacy window commands do not accept them. |
 | `spaceName` | DesktopRenamer’s current name for the space. |
 | `displayName` | macOS display name. |
 | `number` | Space number on that display. |
@@ -50,7 +50,7 @@ tell application "DesktopRenamer"
 end tell
 ```
 
-The process ID is optional; DesktopRenamer resolves it from the window ID when omitted. Use the persistent space IDs from structured records for `from space` and `to space`. Supplying the process ID is recommended because the Accessibility path handles fullscreen and cross-display cases more reliably.
+The process ID is optional; DesktopRenamer resolves it from the window ID when omitted. In these text commands, `from space` and `to space` must be current macOS ManagedSpaceIDs, such as the IDs in `get windows` or `get all spaces`; refresh them before use because macOS can reassign them. These commands cannot consume the persistent IDs returned by structured records. Use the corresponding [structured SpaceAPI operations](../spaceapi/structured.md) when you need to address spaces by persistent ID. Supplying the process ID is recommended because the Accessibility path handles fullscreen and cross-display cases more reliably.
 
 ## Window actions
 

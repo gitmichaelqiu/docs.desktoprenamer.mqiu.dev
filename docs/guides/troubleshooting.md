@@ -11,11 +11,11 @@ Confirm that DesktopRenamer is enabled under **System Settings → Privacy & Sec
 
 ## A window move fails
 
-Make sure the source and target spaces still exist, then refresh labels from the menu bar or API. Fullscreen applications may need to be active before macOS exposes their Accessibility window hierarchy.
+Make sure the source and target spaces still exist, then refresh labels from the menu bar or API. With the status-bar menu open, **⌘⇧R** reloads Space Labels. Fullscreen applications may need to be active before macOS exposes their Accessibility window hierarchy. If a move fails, DesktopRenamer attempts to return to the source space when it can identify it; this recovery does not mean the window move succeeded.
 
 ## Space names or preview labels are stale
 
-Use **Reload Space Labels** from the menu bar or AppleScript. Display changes, sleep/wake, and fullscreen transitions can temporarily invalidate Mission Control bindings; the app retries reconciliation after these events.
+Use **Reload Space Labels** from the menu bar, press **⌘⇧R** while the status-bar menu is open, or use AppleScript. Display changes, sleep/wake, and fullscreen transitions can temporarily invalidate Mission Control bindings; the app retries reconciliation after these events.
 
 ## Rearrangement is unavailable
 
