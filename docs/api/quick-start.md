@@ -1,8 +1,8 @@
 # API quick start
 
-This example shows the preferred request flow for a Swift client using the [structured SpaceAPI protocol](spaceapi/structured.md). The legacy example below remains useful for existing integrations and continues to work unchanged.
+For new integrations, use the authenticated socket transport described in the [structured SpaceAPI protocol](spaceapi/structured.md). The DNC examples below are for compatibility clients and work only while access restriction is off.
 
-## Structured request
+## Structured request over DNC compatibility
 
 Register the response observer before posting the request. Every structured response is carried as a JSON string in the `payload` user-info key and must be matched by its request ID.
 
@@ -43,6 +43,8 @@ if let requestData = try? JSONSerialization.data(withJSONObject: request),
     print("Could not encode SpaceAPI request")
 }
 ```
+
+When access restriction is enabled, connect to the Unix socket instead. Use the `socketEndpoint` from `getAPIInfo` or derive `/tmp/dev.mqiu.DesktopRenamer-<uid>.sock`; send JSON-RPC messages as a 4-byte big-endian length followed by UTF-8 JSON. Do not send a caller-supplied PID or bundle ID as authentication—the app verifies the connecting process from its kernel audit token. See [socket transport and access control](spaceapi/structured.md#authenticated-socket-transport).
 
 For production code, replace the compact `JSONSerialization` handling with a Codable model and keep the observer alive until the matching response or a timeout is received.
 

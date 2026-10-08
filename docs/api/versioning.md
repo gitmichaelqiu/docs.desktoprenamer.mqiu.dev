@@ -1,6 +1,6 @@
 # API versioning
 
-The current external API contract version is **1.2.0**.
+The current external API contract version is **1.3.0**.
 
 This version is intentionally independent from DesktopRenamer's marketing and build version. A client can therefore be compatible with an API contract even when the app receives an ordinary bug-fix release.
 
@@ -13,6 +13,8 @@ This version is intentionally independent from DesktopRenamer's marketing and bu
 The legacy notification and delimiter-based APIs predate formal API versioning and are treated as **pre-1.0.0 compatibility surfaces**. Their existing names, payloads, and behavior remain supported.
 
 Contract `1.0.0` was the first formally versioned API contract. It added the structured JSON-RPC 2.0 transport, typed snapshots, typed AppleScript records, request validation, and revisioned state events. Contract `1.1.0` added Space Lock capabilities without changing legacy delimiter shapes or the JSON-RPC envelope. Contract `1.2.0` exposes persistent DesktopRenamer-owned IDs in structured space records, current-space IDs, window space references, and operation parameters. Structured operations continue to accept a currently valid ManagedSpaceID for migration compatibility. JSON-RPC `2.0` identifies the message envelope and is independent of the API contract version.
+
+Contract `1.3.0` adds an authenticated Unix-domain socket transport and opt-in SpaceAPI access restriction. The existing DNC transport remains available when restriction is off. When restriction is on, only approved app code identities can use the socket; legacy DNC requests and broadcasts are disabled. See [SpaceAPI permissions](spaceapi/structured.md#access-control) for client approval and compatibility behavior.
 
 Clients that treated `id` as an opaque string and passed it back to DesktopRenamer need no call-site changes. Integrations that interpreted it as a macOS ManagedSpaceID must switch to macOS-specific data from another source; structured records now use DesktopRenamer IDs.
 
@@ -30,4 +32,4 @@ tell application "DesktopRenamer"
 end tell
 ```
 
-SpaceAPI clients can post the preferred `dev.mqiu.DesktopRenamer.GetAPIVersion` distributed notification and receive `dev.mqiu.DesktopRenamer.ReturnAPIVersion` with an `apiVersion` user-info value. The corresponding `com.michaelqiu.DesktopRenamer` names remain accepted only for compatibility.
+SpaceAPI clients can request `getAPIInfo` over the authenticated socket or, when using the compatibility transport, post the preferred `dev.mqiu.DesktopRenamer.GetAPIVersion` distributed notification and receive `dev.mqiu.DesktopRenamer.ReturnAPIVersion` with an `apiVersion` user-info value. The corresponding `com.michaelqiu.DesktopRenamer` names remain accepted only for compatibility.

@@ -1,12 +1,18 @@
 # Structured SpaceAPI protocol
 
-The structured SpaceAPI is available from contract version **1.0.0** and currently reports **1.2.0**. It uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope and is versioned independently from the API contract.
+The structured SpaceAPI is available from contract version **1.0.0** and currently reports **1.3.0**. It uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope and is versioned independently from the API contract.
 
-The legacy SpaceAPI notifications, user-info keys, and delimiter-based payloads remain supported. New integrations should prefer this structured protocol. AppleScript is documented separately in the [AppleScript guide](../applescript/index.md).
+New integrations should use this structured protocol over the authenticated Unix-domain socket. The legacy SpaceAPI notifications, user-info keys, and delimiter-based payloads remain available for compatibility when access restriction is off. AppleScript is documented separately in the [AppleScript guide](../applescript/index.md).
 
-## Distributed notification channels
+## Authenticated socket transport
 
-Structured messages use dedicated `DistributedNotificationCenter` channels:
+The socket endpoint is reported by `getAPIInfo`. It is also available at `/tmp/dev.mqiu.DesktopRenamer-<uid>.sock`, where `<uid>` is the local user's numeric ID. The server uses the kernel-provided peer audit token to identify the connecting process; clients must not send a PID, bundle identifier, or app path as identity evidence.
+
+Each message is a 4-byte unsigned big-endian payload length followed by that many UTF-8 JSON bytes. Requests and responses use the same JSON-RPC 2.0 envelopes as the DNC transport. The existing 1 MiB maximum applies to each JSON message, excluding the 4-byte frame header. State-change event messages are sent to connected clients and use the existing `stateChanged` JSON-RPC notification shape. Keep the connection open to receive events; reconnect and fetch a snapshot to recover after disconnection.
+
+## Distributed-notification compatibility transport
+
+When access restriction is off, structured messages can also use dedicated `DistributedNotificationCenter` channels:
 
 | Channel | Direction | Purpose |
 | --- | --- | --- |
@@ -88,7 +94,7 @@ Events are JSON-RPC notifications and therefore have no ID or response. The curr
   "params": {
     "reason": "activeSpaceChanged",
     "snapshot": {
-      "apiVersion": "1.2.0",
+      "apiVersion": "1.3.0",
       "revision": 18,
       "timestamp": "2026-08-31T07:00:00Z",
       "currentSpaceIDs": ["SPACE-ID"],
@@ -133,7 +139,7 @@ Use the exact `id` from a current structured snapshot for structured operation p
 
 ```json
 {
-  "apiVersion": "1.2.0",
+  "apiVersion": "1.3.0",
   "revision": 18,
   "timestamp": "2026-08-31T07:00:00Z",
   "currentSpaceIDs": ["SPACE-ID"],
@@ -155,7 +161,7 @@ Structured JSON-RPC `getAllSpaces` returns an array of space objects. This is di
 
 ```json
 {
-  "apiVersion": "1.2.0",
+  "apiVersion": "1.3.0",
   "revision": 18,
   "timestamp": "2026-08-31T07:00:00Z",
   "spaces": [/* space objects */],
@@ -222,11 +228,11 @@ Accepted asynchronous operations return:
 
 ## API information
 
-`getAPIInfo` reports the capabilities needed for negotiation:
+`getAPIInfo` reports the capabilities needed for negotiation. Contract 1.3.0 adds the three fields `transports`, `socketEndpoint`, and `accessRestricted`:
 
 ```json
 {
-  "contractVersion": "1.2.0",
+  "contractVersion": "1.3.0",
   "jsonRPCVersion": "2.0",
   "supportedMethods": [
     "getAPIInfo",
@@ -260,11 +266,24 @@ Accepted asynchronous operations return:
   "legacyCompatibility": "supported",
   "eventNotifications": true,
   "eventCapabilities": ["stateChanged"],
-  "maxPayloadBytes": 1048576
+  "maxPayloadBytes": 1048576,
+  "transports": ["unixDomainSocket", "distributedNotificationCenter"],
+  "socketEndpoint": "/tmp/dev.mqiu.DesktopRenamer-501.sock",
+  "accessRestricted": false
 }
 ```
 
 Clients should inspect the complete `supportedMethods` array rather than assuming that a future minor version supports every method. Unknown response fields must be ignored so compatible clients can survive additive fields.
+
+When restriction is enabled, `transports` contains only `unixDomainSocket`, `legacyNotifications` is `false`, `legacyCompatibility` is `disabledByAccessPolicy`, and `accessRestricted` is `true`. Older versions omit the three new fields; clients should treat them as a DNC-only compatibility API.
+
+## Access control
+
+Access restriction is off by default. Turn it on in **Settings → General → Advanced → Restrict SpaceAPI access**, then add approved applications from **Approved apps**. An empty list denies every socket client. Signed apps are approved by their designated code requirement, so updates signed with the same app identity retain access. Ad-hoc development apps are approved by exact code hash and must be approved again after a rebuild. Revoking an app closes its active socket connections and stops delivery of further events.
+
+While restriction is on, DesktopRenamer removes all legacy and structured DNC request handlers and suppresses every DNC response and event broadcast, including the compatibility namespace. DNC-only clients and older DesktopRenamer versions therefore cannot use SpaceAPI in restricted mode. The `-32003` JSON-RPC error means the connecting app is not approved. If the **Enable SpaceAPI** setting is off, both the socket and DNC transports are stopped. This restriction applies only to SpaceAPI; AppleScript behavior is unchanged.
+
+Raycast connects directly to the socket so DesktopRenamer authenticates Raycast's process rather than an `osascript` child. It uses the DNC compatibility transport only after confirming that the installed DesktopRenamer version predates socket support. Authorization denials and socket communication failures do not trigger DNC fallback.
 
 The `toggleLockSpace` method returns an accepted operation result. The lock state is reported in the next snapshot or in a `stateChanged` event with reason `lockStateChanged`; it is not returned as a Boolean by JSON-RPC.
 
@@ -281,6 +300,7 @@ Requests are rejected when the payload is not valid UTF-8 JSON, is not a JSON ob
 | `-32603` | Unexpected server-side failure. |
 | `-32001` | SpaceAPI is disabled. |
 | `-32002` | DesktopRenamer is not ready. |
+| `-32003` | The connecting app is not approved to use SpaceAPI. |
 | `-32004` | Requested operation failed. |
 | `-32006` | Payload exceeds the size limit. |
 
@@ -288,9 +308,9 @@ The `data` object is optional. When present, `parameter`, `expected`, and `comma
 
 ## Re-synchronizing after events
 
-Distributed notifications are broadcasts and can be dropped while a client is suspended or disconnected. Track the `revision` in every snapshot and event:
+Events can be missed while a client is suspended or disconnected. Track the `revision` in every snapshot and event:
 
-1. Subscribe to `RPCEvent`.
+1. Keep an authenticated socket connection open for events, or subscribe to `RPCEvent` when using unrestricted DNC compatibility.
 2. Request `getSpaceSnapshot` and record its revision.
 3. Ignore an event whose revision is not newer than the last applied revision.
 4. If the next revision is not greater by one, request a fresh `getSpaceSnapshot` before applying later UI state.

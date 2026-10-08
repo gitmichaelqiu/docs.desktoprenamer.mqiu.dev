@@ -2,6 +2,17 @@
 
 This page records changes to the external contract, independently of DesktopRenamer’s app release version.
 
+## 1.3.0
+
+Added opt-in SpaceAPI access restriction and authenticated local transport:
+
+- JSON-RPC requests, responses, and state-change events can use a length-prefixed Unix-domain socket.
+- `getAPIInfo` now reports available `transports`, `socketEndpoint`, and `accessRestricted` state.
+- Users can approve signed apps by designated code requirement and ad-hoc development apps by exact code hash in **Settings → General → Advanced → Approved apps**.
+- Enabling restriction disables all legacy and structured DistributedNotificationCenter request handlers and broadcasts. An empty approved-app list denies every SpaceAPI client.
+- Older clients that only support DistributedNotificationCenter cannot use SpaceAPI while restriction is enabled. When restriction is off, existing DNC clients remain compatible.
+- Disabling **Enable SpaceAPI** disables both SpaceAPI transports. AppleScript behavior is unchanged.
+
 ## 1.2.0
 
 Changed structured space identity semantics:

@@ -23,4 +23,4 @@ Native rearrangement depends on private system behavior that can vary by macOS r
 
 ## API clients receive no notifications
 
-Check that **Enable SpaceAPI** is on in **Settings → General → Advanced** and that the client subscribes to `DistributedNotificationCenter` before posting its request notification. Always request a fresh snapshot after reconnecting.
+Check that **Enable SpaceAPI** is on in **Settings → General → Advanced**. If access restriction is enabled, approve the client and use the authenticated socket; DNC-only clients will not receive responses. When restriction is off, DNC clients must subscribe before posting a request. Always request a fresh snapshot after reconnecting.

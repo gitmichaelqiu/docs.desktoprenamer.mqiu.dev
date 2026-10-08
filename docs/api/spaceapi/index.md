@@ -1,6 +1,6 @@
 # SpaceAPI
 
-SpaceAPI is DesktopRenamer's distributed-notification interface. It is useful for integrations that need to observe spaces or issue commands without launching AppleScript.
+SpaceAPI is DesktopRenamer's local integration interface. It is useful for integrations that need to observe spaces or issue commands without launching AppleScript. Contract 1.3.0 supports an authenticated Unix-domain socket and retains DistributedNotificationCenter (DNC) for compatibility when access restriction is off.
 
 There are two SpaceAPI formats:
 
@@ -23,6 +23,6 @@ Distributed notifications are broadcasts and can be dropped. The structured prot
 
 ## Requirements
 
-SpaceAPI is available when **Settings → General → Advanced → Enable SpaceAPI** is enabled. A client does not need to activate or bring DesktopRenamer to the front. Requests that switch or rearrange spaces can complete asynchronously; observe a later state update before assuming Mission Control has settled.
+SpaceAPI is available when **Settings → General → Advanced → Enable SpaceAPI** is enabled. When **Restrict SpaceAPI access** is on, only apps approved in **Approved apps** may use the socket; DNC requests and broadcasts are disabled. Older DNC-only clients will not work in restricted mode. The restriction does not change AppleScript behavior. A client does not need to activate or bring DesktopRenamer to the front. Requests that switch or rearrange spaces can complete asynchronously; observe a later state update before assuming Mission Control has settled.
 
 For a typed contract, transport details, methods, and error handling, see the [structured protocol](structured.md). For existing notification names and payload keys, see the [legacy format](legacy-format.md).

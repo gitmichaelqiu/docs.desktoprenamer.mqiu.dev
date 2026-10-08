@@ -4,7 +4,9 @@ This page documents the legacy notification names and delimiter-based payloads t
 
 The legacy command `getAllSpaces` is not the structured JSON-RPC method with the same name. The legacy command returns newline-delimited text; JSON-RPC `getAllSpaces` returns an array of typed space objects.
 
-SpaceAPI uses `DistributedNotificationCenter`. The notification prefix is:
+The legacy SpaceAPI uses `DistributedNotificationCenter`. It is available only while SpaceAPI access restriction is off. When restriction is enabled, the app removes legacy and structured DNC listeners and suppresses all DNC responses and broadcasts. Use the authenticated socket-based [structured SpaceAPI](structured.md) for restricted access.
+
+The notification prefix is:
 
 ```text
 dev.mqiu.DesktopRenamer
