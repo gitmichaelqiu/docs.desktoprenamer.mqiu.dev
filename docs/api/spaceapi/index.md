@@ -23,6 +23,6 @@ Distributed notifications are broadcasts and can be dropped. The structured prot
 
 ## Requirements
 
-SpaceAPI is available when **Settings → General → Advanced → Enable SpaceAPI** is enabled. When **Restrict SpaceAPI access** is on, only apps approved in **Approved apps** may use the socket; DNC requests and broadcasts are disabled. Older DNC-only clients will not work in restricted mode. The restriction does not change AppleScript behavior. A client does not need to activate or bring DesktopRenamer to the front. Requests that switch or rearrange spaces can complete asynchronously; observe a later state update before assuming Mission Control has settled.
+SpaceAPI is available when **Settings → General → Advanced → Enable SpaceAPI** is enabled. When access restriction is on in **Manage SpaceAPI access**, an unapproved app using the authenticated socket can request access from the user; DNC requests and broadcasts are disabled. Older DNC-only clients cannot request access and will not work in restricted mode. The restriction does not change AppleScript behavior. A client does not need to activate or bring DesktopRenamer to the front. Requests that switch or rearrange spaces can complete asynchronously; observe a later state update before assuming Mission Control has settled.
 
 For a typed contract, transport details, methods, and error handling, see the [structured protocol](structured.md). For existing notification names and payload keys, see the [legacy format](legacy-format.md).

@@ -8,7 +8,8 @@ Added opt-in SpaceAPI access restriction and authenticated local transport:
 
 - JSON-RPC requests, responses, and state-change events can use a length-prefixed Unix-domain socket.
 - `getAPIInfo` now reports available `transports`, `socketEndpoint`, and `accessRestricted` state.
-- Users can approve signed apps by designated code requirement and ad-hoc development apps by exact code hash in **Settings → General → Advanced → Approved apps**.
+- Users can approve signed apps by designated code requirement and ad-hoc development apps by exact code hash in **Settings → General → Advanced → Manage SpaceAPI access**.
+- An unapproved socket client can trigger an in-app access request. The initial request waits for the user's choice of no access, read-only, or read/write access; DNC-only clients cannot request approval.
 - Enabling restriction disables all legacy and structured DistributedNotificationCenter request handlers and broadcasts. An empty approved-app list denies every SpaceAPI client.
 - Older clients that only support DistributedNotificationCenter cannot use SpaceAPI while restriction is enabled. When restriction is off, existing DNC clients remain compatible.
 - Disabling **Enable SpaceAPI** disables both SpaceAPI transports. AppleScript behavior is unchanged.
