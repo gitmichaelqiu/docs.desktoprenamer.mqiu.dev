@@ -16,7 +16,7 @@ The official [DesktopRenamer Raycast extension](https://www.raycast.com/michael_
 
 1. Install DesktopRenamer and the Raycast extension.
 2. Enable **SpaceAPI** in **Settings → General → Advanced**.
-3. If **Restrict SpaceAPI access** is enabled, add Raycast to **Approved apps** in the same section.
+3. If access is restricted, open **Manage SpaceAPI access** and add Raycast under **App Permissions**.
 4. Grant DesktopRenamer Accessibility permission in **System Settings → Privacy & Security → Accessibility**.
 5. Open the extension and refresh its space and window data.
 
@@ -31,7 +31,7 @@ After any move, rearrangement, or full-screen transition, wait for the next Spac
 ## Diagnosing a missing result
 
 - Confirm that DesktopRenamer’s API is enabled.
-- If the extension reports that the app is not approved, add Raycast in **Settings → General → Advanced → Approved apps**. Re-approve local ad-hoc Raycast or DesktopRenamer builds after rebuilding them.
+- If the extension reports that the app is not approved, open **Settings → General → Advanced → Manage SpaceAPI access** and add Raycast under **App Permissions**. Re-approve local ad-hoc Raycast or DesktopRenamer builds after rebuilding them.
 - Confirm Accessibility permission and restart DesktopRenamer after changing it.
 - Ensure the client connects to the authenticated socket before sending SpaceAPI requests. DNC-only clients work only when access restriction is off.
 - Re-request `GetSpaceList` after displays or full-screen applications change.
