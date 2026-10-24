@@ -2,6 +2,15 @@
 
 This page records changes to the external contract, independently of DesktopRenamer’s app release version.
 
+## 1.4.0
+
+Added app-wide automatic-return behavior for structured SpaceAPI clients:
+
+- `getAPIInfo` reports the `returnToOriginalSpace` setting from DesktopRenamer's Launcher settings.
+- SpaceAPI window moves and actions that activate another space return to the original spaces when the setting is enabled.
+- `executeWindowAction` and `moveSpecificWindow` accept the optional `deferAutomaticReturn` Boolean for clients that restore the original spaces once after a batch.
+- The Raycast extension reads the app setting and no longer keeps a separate automatic-return preference.
+
 ## 1.3.0
 
 Added opt-in SpaceAPI access restriction and authenticated local transport:
