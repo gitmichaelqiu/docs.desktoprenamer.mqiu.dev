@@ -22,7 +22,7 @@ The official [DesktopRenamer Raycast extension](https://www.raycast.com/michael_
 
 The extension uses the structured JSON-RPC SpaceAPI over a Unix-domain socket for automatic and SpaceAPI-mode reads and operations. Approve Raycast itself; the extension connects directly from Raycast rather than through an `osascript` child process. For older DesktopRenamer versions that predate socket support, it uses DNC only after confirming the older API version. It never falls back to DNC after an access denial or ambiguous socket failure. When SpaceAPI restriction is off, older clients can continue using DNC. The extension is a reference client, not a required dependency.
 
-Automatic return is controlled by **Automatically return to original space** in DesktopRenamer's **Settings → Launcher**. This app setting applies to SpaceAPI operations across clients; the Raycast extension does not keep a separate preference for it. Batch operations defer per-action returns and restore the starting spaces once when the app setting is enabled.
+In current development builds, automatic return is controlled by **Automatically return to original space** in DesktopRenamer's **Settings → Launcher**. This app setting applies to SpaceAPI operations across clients; the Raycast extension does not keep a separate preference for it. Batch operations defer per-action returns and restore the starting spaces once when the app setting is enabled.
 
 ## Full-screen windows
 

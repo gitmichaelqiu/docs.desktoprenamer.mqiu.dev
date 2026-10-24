@@ -1,6 +1,6 @@
 # Structured SpaceAPI protocol
 
-The structured SpaceAPI is available from contract version **1.0.0** and currently reports **1.4.0**. It uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope and is versioned independently from the API contract.
+The structured SpaceAPI is available from contract version **1.0.0** and currently reports **1.3.0**. It uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope and is versioned independently from the API contract.
 
 New integrations should use this structured protocol over the authenticated Unix-domain socket. The legacy SpaceAPI notifications, user-info keys, and delimiter-based payloads remain available for compatibility when access restriction is off. AppleScript is documented separately in the [AppleScript guide](../applescript/index.md).
 
@@ -224,15 +224,15 @@ Accepted asynchronous operations return:
 | `executeWindowAction` | `windowID`, `pid`, `action`, optional `deferAutomaticReturn` | Operation result. |
 | `moveSpecificWindow` | `windowID`, optional `pid`, `fromSpaceID`, `targetSpaceID`, optional `isMinimized`, optional `isHidden`, optional `deferAutomaticReturn` | Operation result. |
 
-`windowID` and `pid` are integers. Space IDs in these parameters are the DesktopRenamer-owned IDs returned by structured snapshots. The optional `pid` in `moveSpecificWindow` can be omitted when DesktopRenamer can resolve the process from `windowID`. When **Automatically return to original space** is enabled in DesktopRenamer's Launcher settings, window moves and actions that activate another space return to the spaces that were active before the operation. Set `deferAutomaticReturn` to `true` when a batch client will restore its initial spaces after all operations; otherwise, each operation handles its own return. Unknown method parameters are rejected rather than silently ignored.
+`windowID` and `pid` are integers. Space IDs in these parameters are the DesktopRenamer-owned IDs returned by structured snapshots. The optional `pid` in `moveSpecificWindow` can be omitted when DesktopRenamer can resolve the process from `windowID`. In current development builds, when **Automatically return to original space** is enabled in DesktopRenamer's Launcher settings, window moves and actions that activate another space return to the spaces that were active before the operation. Set `deferAutomaticReturn` to `true` when a batch client will restore its initial spaces after all operations; otherwise, each operation handles its own return. Unknown method parameters are rejected rather than silently ignored.
 
 ## API information
 
-`getAPIInfo` reports the capabilities needed for negotiation. Contract 1.3.0 added `transports`, `socketEndpoint`, and `accessRestricted`; contract 1.4.0 adds `returnToOriginalSpace`:
+`getAPIInfo` reports the capabilities needed for negotiation. Contract 1.3.0 added `transports`, `socketEndpoint`, and `accessRestricted`. Current development builds keep the 1.3.0 contract marker and also report `returnToOriginalSpace`:
 
 ```json
 {
-  "contractVersion": "1.4.0",
+  "contractVersion": "1.3.0",
   "jsonRPCVersion": "2.0",
   "supportedMethods": [
     "getAPIInfo",
@@ -274,7 +274,7 @@ Accepted asynchronous operations return:
 }
 ```
 
-Clients should inspect the complete `supportedMethods` array rather than assuming that a future minor version supports every method. Unknown response fields must be ignored so compatible clients can survive additive fields. Clients should use `returnToOriginalSpace` to reflect the app's setting and should not keep a separate preference for this behavior. Versions before 1.4.0 omit the field; preserve the client's previous default in that case.
+Clients should inspect the complete `supportedMethods` array rather than assuming that a future minor version supports every method. Unknown response fields must be ignored so compatible clients can survive additive fields. Builds with centralized automatic-return support include `returnToOriginalSpace`; use it to reflect the app's setting instead of keeping a separate preference. Older 1.3.0 builds omit the field, so preserve the client's previous default in that case.
 
 When restriction is enabled, `transports` contains only `unixDomainSocket`, `legacyNotifications` is `false`, `legacyCompatibility` is `disabledByAccessPolicy`, and `accessRestricted` is `true`. Older versions omit fields added after their contract version; clients should treat versions before 1.3.0 as a DNC-only compatibility API.
 

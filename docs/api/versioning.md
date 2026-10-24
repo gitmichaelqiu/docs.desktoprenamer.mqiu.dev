@@ -1,6 +1,6 @@
 # API versioning
 
-The current external API contract version is **1.4.0**.
+The current external API contract version is **1.3.0**.
 
 This version is intentionally independent from DesktopRenamer's marketing and build version. A client can therefore be compatible with an API contract even when the app receives an ordinary bug-fix release.
 
@@ -16,7 +16,7 @@ Contract `1.0.0` was the first formally versioned API contract. It added the str
 
 Contract `1.3.0` adds an authenticated Unix-domain socket transport and opt-in SpaceAPI access restriction. The existing DNC transport remains available when restriction is off. When restriction is on, only approved app code identities can use the socket; legacy DNC requests and broadcasts are disabled. See [SpaceAPI permissions](spaceapi/structured.md#access-control) for client approval and compatibility behavior.
 
-Contract `1.4.0` reports the app's **Automatically return to original space** setting in `getAPIInfo.returnToOriginalSpace`. SpaceAPI window moves and window actions honor that setting by default. `executeWindowAction` and `moveSpecificWindow` accept the optional `deferAutomaticReturn` Boolean so a client can group operations and restore the original spaces once after the batch. Older clients can ignore the added API information field; newer clients should read it instead of keeping a separate automatic-return preference.
+Current development builds retain the `1.3.0` contract marker while adding app-wide automatic return. In these builds, `getAPIInfo.returnToOriginalSpace` reports the app's **Automatically return to original space** setting, and window moves and actions honor it by default. `executeWindowAction` and `moveSpecificWindow` accept the optional `deferAutomaticReturn` Boolean so a client can group operations and restore the original spaces once after a batch. Older `1.3.0` builds omit the field; clients should retain their previous default and avoid sending the optional parameter to those builds.
 
 Clients that treated `id` as an opaque string and passed it back to DesktopRenamer need no call-site changes. Integrations that interpreted it as a macOS ManagedSpaceID must switch to macOS-specific data from another source; structured records now use DesktopRenamer IDs.
 

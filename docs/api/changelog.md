@@ -2,9 +2,9 @@
 
 This page records changes to the external contract, independently of DesktopRenamer’s app release version.
 
-## 1.4.0
+## Unreleased
 
-Added app-wide automatic-return behavior for structured SpaceAPI clients:
+The current development build keeps the contract marker at 1.3.0 and adds app-wide automatic-return behavior:
 
 - `getAPIInfo` reports the `returnToOriginalSpace` setting from DesktopRenamer's Launcher settings.
 - SpaceAPI window moves and actions that activate another space return to the original spaces when the setting is enabled.
