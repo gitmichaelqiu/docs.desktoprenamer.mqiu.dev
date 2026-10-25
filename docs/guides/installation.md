@@ -24,6 +24,8 @@ The [Raycast extension](https://www.raycast.com/michael_qiu/desktoprenamer) uses
 
 Open **Settings → General → Advanced** and turn on **Enable SpaceAPI**. Existing installations keep the API enabled by default unless it was explicitly disabled.
 
+Access restriction is on by default when no saved policy exists. Approve a client in **Settings → General → Advanced → Manage SpaceAPI access**. Older clients that only support Distributed Notifications require **Allow only approved apps** to be off.
+
 <figure class="dr-visual dr-visual--narrow">
   <img src="../images/product/spaceapi-settings.png" alt="DesktopRenamer's Enable SpaceAPI setting in the Advanced settings section" loading="lazy">
   <figcaption>Enable SpaceAPI before connecting Raycast or another client.</figcaption>
