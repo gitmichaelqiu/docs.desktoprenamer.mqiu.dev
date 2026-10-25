@@ -1,6 +1,6 @@
 # Structured SpaceAPI protocol
 
-The structured SpaceAPI is available from contract version **1.0.0** and currently reports **1.3.0**. It uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope and is versioned independently from the API contract.
+The structured SpaceAPI is available from contract version **1.0.0** and currently reports **1.3.0**. It uses JSON-RPC 2.0 as its message format. JSON-RPC 2.0 is the transport envelope and is versioned independently from the API contract. Current development builds include a `managedSpaceID` mapping in structured space records; earlier 1.3.0 builds do not.
 
 New integrations should use this structured protocol over the authenticated Unix-domain socket. The legacy SpaceAPI notifications, user-info keys, and delimiter-based payloads remain available for compatibility when access restriction is off. AppleScript is documented separately in the [AppleScript guide](../applescript/index.md).
 
@@ -119,6 +119,7 @@ Each space object contains:
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | string | Opaque DesktopRenamer-owned identity for this space. Use it as the persistent key and in structured operation parameters. |
+| `managedSpaceID` | string | Current macOS ManagedSpaceID for this space. Use it only when a macOS API requires the system ID; it can change and must not be persisted. Older 1.3.0 builds omit this field. |
 | `name` | string | User-facing name. |
 | `displayID` | string | Display identifier. |
 | `displayName` | string | Localized display name when available. |
@@ -129,7 +130,7 @@ Each space object contains:
 | `globalShortcutNumber` | integer or `null` | Configured global shortcut number, when available. |
 | `isLocked` | Boolean | Whether Space Lock is enabled for this space. Fullscreen spaces are always `false` and cannot be locked. |
 
-DesktopRenamer creates and stores this ID independently of macOS's numeric ManagedSpaceID. It is retained across app and system restarts, space reordering, and display changes when macOS reports the same persistent space UUID. A deleted and recreated space receives a new ID when macOS reports its new persistent identity or DesktopRenamer observes it as a distinct space. If a space has no persistent UUID, its ID is guaranteed only for the current boot and is renewed after reboot rather than guessed from position or risking assigning saved client data to the wrong space. Structured operations also accept a ManagedSpaceID while it still identifies a current space, to ease migration; use the stable `id` from structured responses for new integrations. The legacy API continues to expose ManagedSpaceIDs in its original output formats.
+DesktopRenamer creates and stores `id` independently of macOS's numeric ManagedSpaceID. It is retained across app and system restarts, space reordering, and display changes when macOS reports the same persistent space UUID. A deleted and recreated space receives a new ID when macOS reports its new persistent identity or DesktopRenamer observes it as a distinct space. If a space has no persistent UUID, its ID is guaranteed only for the current boot and is renewed after reboot rather than guessed from position or risking assigning saved client data to the wrong space. The current development build also returns `managedSpaceID` for clients that need the current macOS identifier for an OS-specific API. This value is resolved from the same space record as `id`; it is not inferred from space order, number, or name. Use `id` for saved rules and `managedSpaceID` only for the current macOS session. The legacy API continues to expose ManagedSpaceIDs in its original output formats.
 
 Use the exact `id` from a current structured snapshot for structured operation parameters. Unknown or stale IDs are rejected rather than being interpreted as a different space. For transitional compatibility, an old ManagedSpaceID is accepted only while it still identifies a current space.
 

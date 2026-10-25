@@ -4,8 +4,9 @@ This page records changes to the external contract, independently of DesktopRena
 
 ## Unreleased
 
-The current development build keeps the contract marker at 1.3.0 and adds app-wide automatic-return behavior:
+The current development build keeps the contract marker at 1.3.0 and adds:
 
+- `managedSpaceID` in structured space records, mapping each stable DesktopRenamer `id` to its current macOS ManagedSpaceID. Older 1.3.0 builds omit this field; clients should use it only for current-session macOS calls and persist the stable `id`.
 - `getAPIInfo` reports the `returnToOriginalSpace` setting from DesktopRenamer's Launcher settings.
 - SpaceAPI window moves and actions that activate another space return to the original spaces when the setting is enabled.
 - `executeWindowAction` and `moveSpecificWindow` accept the optional `deferAutomaticReturn` Boolean for clients that restore the original spaces once after a batch.

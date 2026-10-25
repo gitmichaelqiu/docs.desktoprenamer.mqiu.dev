@@ -1,6 +1,6 @@
 # SpaceAPI
 
-SpaceAPI is DesktopRenamer's local integration interface. It is useful for integrations that need to observe spaces or issue commands without launching AppleScript. Contract 1.3.0 supports an authenticated Unix-domain socket and retains DistributedNotificationCenter (DNC) for compatibility when access restriction is off. Current development builds also report the app-wide automatic-return setting.
+SpaceAPI is DesktopRenamer's local integration interface. It is useful for integrations that need to observe spaces or issue commands without launching AppleScript. Contract 1.3.0 supports an authenticated Unix-domain socket and retains DistributedNotificationCenter (DNC) for compatibility when access restriction is off. Current development builds also report the app-wide automatic-return setting and include each space's current ManagedSpaceID beside its stable ID in structured records.
 
 There are two SpaceAPI formats:
 
