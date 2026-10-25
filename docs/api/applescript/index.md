@@ -71,6 +71,14 @@ tell application "DesktopRenamer"
 end tell
 ```
 
+## Access control
+
+macOS Automation permission is still required before an app can send Apple events to DesktopRenamer. You can additionally enable **Restrict AppleScript access** in **Settings → General → Advanced → Manage SpaceAPI access**. This separate policy is off by default for compatibility.
+
+When enabled, the first custom AppleScript command from an identifiable, unapproved app opens an access request. **Read Only** permits data queries, **Read & Write** permits queries and commands that change settings, spaces, or windows, and **Don't Allow** blocks the client. Decisions are saved with the app's SpaceAPI approval, and its access level applies to both interfaces whenever their restrictions are enabled. You can change or remove an app's approval in **Manage SpaceAPI access**. An app whose identity cannot be verified is denied.
+
+Commands denied by this policy return script error `-4` with a message explaining whether access or write access is missing. macOS Automation consent and this DesktopRenamer access choice are separate checks.
+
 ## Errors and timing
 
 Commands that change spaces or move windows return before the operating-system action has necessarily finished. `execute window action` waits for DesktopRenamer's action routine and returns `true`, but clients should still refresh window data after a state-changing command.
@@ -82,5 +90,6 @@ Validation errors use standard script errors:
 | `-1` | The API is disabled. |
 | `-2` | An argument is missing or invalid. |
 | `-3` | DesktopRenamer is not ready. |
+| `-4` | AppleScript access is not approved, or the client lacks write access. |
 
 Invalid rearrangement directions set the script error to `Direction must be up or down`. Clients should inspect the script error number and string rather than treating every missing result as success. When the API is disabled, commands set script error `-1` with `API Disabled`; read commands that have a text result also return that string, while Boolean commands return `false`.
