@@ -2,6 +2,27 @@
 
 This page records changes to the external contract, independently of DesktopRenamer’s app release version.
 
+## Unreleased
+
+The current development build keeps the contract marker at 1.3.0 and adds app-wide automatic-return behavior:
+
+- `getAPIInfo` reports the `returnToOriginalSpace` setting from DesktopRenamer's Launcher settings.
+- SpaceAPI window moves and actions that activate another space return to the original spaces when the setting is enabled.
+- `executeWindowAction` and `moveSpecificWindow` accept the optional `deferAutomaticReturn` Boolean for clients that restore the original spaces once after a batch.
+- The Raycast extension reads the app setting and no longer keeps a separate automatic-return preference.
+
+## 1.3.0
+
+Added opt-in SpaceAPI access restriction and authenticated local transport:
+
+- JSON-RPC requests, responses, and state-change events can use a length-prefixed Unix-domain socket.
+- `getAPIInfo` now reports available `transports`, `socketEndpoint`, and `accessRestricted` state.
+- Users can approve signed apps by designated code requirement and ad-hoc development apps by exact code hash in **Settings → General → Advanced → Manage SpaceAPI access**.
+- An unapproved socket client can trigger an in-app access request. The initial request waits for the user's choice of no access, read-only, or read/write access; DNC-only clients cannot request approval.
+- Enabling restriction disables all legacy and structured DistributedNotificationCenter request handlers and broadcasts. An empty approved-app list denies every SpaceAPI client.
+- Older clients that only support DistributedNotificationCenter cannot use SpaceAPI while restriction is enabled. When restriction is off, existing DNC clients remain compatible.
+- Disabling **Enable SpaceAPI** disables both SpaceAPI transports. AppleScript behavior is unchanged.
+
 ## 1.2.0
 
 Changed structured space identity semantics:

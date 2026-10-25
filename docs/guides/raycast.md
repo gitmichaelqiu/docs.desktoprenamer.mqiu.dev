@@ -16,10 +16,13 @@ The official [DesktopRenamer Raycast extension](https://www.raycast.com/michael_
 
 1. Install DesktopRenamer and the Raycast extension.
 2. Enable **SpaceAPI** in **Settings → General → Advanced**.
-3. Grant DesktopRenamer Accessibility permission in **System Settings → Privacy & Security → Accessibility**.
-4. Open the extension and refresh its space and window data.
+3. If access is restricted, open **Manage SpaceAPI access** and add Raycast under **App Permissions**.
+4. Grant DesktopRenamer Accessibility permission in **System Settings → Privacy & Security → Accessibility**.
+5. Open the extension and refresh its space and window data.
 
-The extension uses the structured JSON-RPC SpaceAPI for automatic and SpaceAPI-mode reads and operations. It validates UUID-correlated responses and falls back to the legacy SpaceAPI or AppleScript when an older DesktopRenamer build does not provide the structured channel. It should be treated as an example of the integration sequence rather than a required dependency.
+The extension uses the structured JSON-RPC SpaceAPI over a Unix-domain socket for automatic and SpaceAPI-mode reads and operations. Approve Raycast itself; the extension connects directly from Raycast rather than through an `osascript` child process. For older DesktopRenamer versions that predate socket support, it uses DNC only after confirming the older API version. It never falls back to DNC after an access denial or ambiguous socket failure. When SpaceAPI restriction is off, older clients can continue using DNC. The extension is a reference client, not a required dependency.
+
+In current development builds, automatic return is controlled by **Automatically return to original space** in DesktopRenamer's **Settings → Launcher**. This app setting applies to SpaceAPI operations across clients; the Raycast extension does not keep a separate preference for it. Batch operations defer per-action returns and restore the starting spaces once when the app setting is enabled.
 
 ## Full-screen windows
 
@@ -30,7 +33,8 @@ After any move, rearrangement, or full-screen transition, wait for the next Spac
 ## Diagnosing a missing result
 
 - Confirm that DesktopRenamer’s API is enabled.
+- If the extension reports that the app is not approved, open **Settings → General → Advanced → Manage SpaceAPI access** and add Raycast under **App Permissions**. Re-approve local ad-hoc Raycast or DesktopRenamer builds after rebuilding them.
 - Confirm Accessibility permission and restart DesktopRenamer after changing it.
-- Ensure the extension subscribes before posting SpaceAPI requests.
+- Ensure the client connects to the authenticated socket before sending SpaceAPI requests. DNC-only clients work only when access restriction is off.
 - Re-request `GetSpaceList` after displays or full-screen applications change.
 - Use `osascript` to test the AppleScript surface independently of Raycast.

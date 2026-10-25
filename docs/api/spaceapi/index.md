@@ -1,6 +1,6 @@
 # SpaceAPI
 
-SpaceAPI is DesktopRenamer's distributed-notification interface. It is useful for integrations that need to observe spaces or issue commands without launching AppleScript.
+SpaceAPI is DesktopRenamer's local integration interface. It is useful for integrations that need to observe spaces or issue commands without launching AppleScript. Contract 1.3.0 supports an authenticated Unix-domain socket and retains DistributedNotificationCenter (DNC) for compatibility when access restriction is off. Current development builds also report the app-wide automatic-return setting.
 
 There are two SpaceAPI formats:
 
@@ -23,6 +23,8 @@ Distributed notifications are broadcasts and can be dropped. The structured prot
 
 ## Requirements
 
-SpaceAPI is available when **Settings → General → Advanced → Enable SpaceAPI** is enabled. A client does not need to activate or bring DesktopRenamer to the front. Requests that switch or rearrange spaces can complete asynchronously; observe a later state update before assuming Mission Control has settled.
+SpaceAPI is available when **Settings → General → Advanced → Enable SpaceAPI** is enabled. When access restriction is on in **Manage SpaceAPI access**, an unapproved app using the authenticated socket can request access from the user; DNC requests and broadcasts are disabled. Older DNC-only clients cannot request access and will not work in restricted mode. The restriction does not change AppleScript behavior. A client does not need to activate or bring DesktopRenamer to the front. Requests that switch or rearrange spaces can complete asynchronously; observe a later state update before assuming Mission Control has settled.
+
+Optional usage statistics are available in **Manage SpaceAPI access** and are off by default. When enabled, DesktopRenamer stores per-app request counts on this Mac for identifiable socket clients; it does not save request contents. DNC requests are not included because their sender cannot be identified. Turning collection off pauses new counts, and **Clear** removes the saved history.
 
 For a typed contract, transport details, methods, and error handling, see the [structured protocol](structured.md). For existing notification names and payload keys, see the [legacy format](legacy-format.md).
