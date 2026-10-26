@@ -1,6 +1,6 @@
 # API versioning
 
-The current external API contract version is **1.3.0**.
+The current external API contract version is **1.3.1**.
 
 This version is intentionally independent from DesktopRenamer's marketing and build version. A client can therefore be compatible with an API contract even when the app receives an ordinary bug-fix release.
 
@@ -16,11 +16,11 @@ Contract `1.0.0` was the first formally versioned API contract. It added the str
 
 Contract `1.3.0` adds an authenticated Unix-domain socket transport and opt-in SpaceAPI access restriction. The existing DNC transport remains available when restriction is off. When restriction is on, only approved app code identities can use the socket; legacy DNC requests and broadcasts are disabled. See [SpaceAPI permissions](spaceapi/structured.md#access-control) for client approval and compatibility behavior.
 
-Current development builds enable access restriction by default when no saved policy exists and preserve an existing saved choice. This default-policy change does not change the API contract version. DNC-only clients require restriction to be turned off.
+The released 1.3.0 implementation reports `returnToOriginalSpace` in `getAPIInfo` and supports the optional `deferAutomaticReturn` parameter on window moves and actions. When automatic return is enabled, these operations return to the spaces that were active before the operation; clients can defer that behavior while batching operations.
 
-Current development builds retain the `1.3.0` contract marker while adding app-wide automatic return and `managedSpaceID` in structured space records. `getAPIInfo.returnToOriginalSpace` reports the app's **Automatically return to original space** setting, and window moves and actions honor it by default. `executeWindowAction` and `moveSpecificWindow` accept the optional `deferAutomaticReturn` Boolean so a client can group operations and restore the original spaces once after a batch. Older `1.3.0` builds omit these additions; clients should preserve their prior automatic-return behavior and check for `managedSpaceID` before relying on it.
+When no saved access policy exists, the released implementation enables SpaceAPI access restriction by default and preserves an existing saved choice. DNC-only clients require restriction to be turned off.
 
-Clients that treated `id` as an opaque string and passed it back to DesktopRenamer need no call-site changes. Current development builds add `managedSpaceID` to structured space records for clients that need the current macOS identifier. Older 1.3.0 builds omit it. The managed ID can change and is only suitable for immediate macOS API calls; continue using `id` for saved references.
+Contract `1.3.1` adds the optional `managedSpaceID` field to structured SpaceAPI and AppleScript space records. It maps each stable DesktopRenamer `id` to the current macOS ManagedSpaceID, allowing clients to make OS-specific calls without deriving the mapping from order, number, or name. Older 1.3.0 builds omit the field. The ManagedSpaceID can change and is suitable only for immediate macOS API calls; continue using `id` for saved references.
 
 The legacy notification channels, `PerformCommand`/`CommandResult` transport, and delimiter payloads remain supported and keep their ManagedSpaceID semantics; they are not converted in place, so existing clients can migrate independently. The preferred distributed-notification namespace is `dev.mqiu.DesktopRenamer`, matching the current app bundle identifier. DesktopRenamer also accepts and emits the `com.michaelqiu.DesktopRenamer` namespace solely for compatibility with existing integrations; new clients should use `dev.mqiu.DesktopRenamer`. A legacy response's `apiVersion` identifies the app's current contract marker; it does not prove that the structured JSON-RPC channels are available. Use `getAPIInfo` to negotiate structured capabilities. See the [structured SpaceAPI](spaceapi/structured.md) and [legacy format](spaceapi/legacy-format.md) guides.
 

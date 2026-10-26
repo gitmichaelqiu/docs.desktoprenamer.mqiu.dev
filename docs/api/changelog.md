@@ -2,15 +2,12 @@
 
 This page records changes to the external contract, independently of DesktopRenamer’s app release version.
 
-## Unreleased
+## 1.3.1
 
-The current development build keeps the contract marker at 1.3.0 and adds:
+Compatible corrections and access-control additions:
 
-- `managedSpaceID` in structured space records, mapping each stable DesktopRenamer `id` to its current macOS ManagedSpaceID. Older 1.3.0 builds omit this field; clients should use it only for current-session macOS calls and persist the stable `id`.
-- `getAPIInfo` reports the `returnToOriginalSpace` setting from DesktopRenamer's Launcher settings.
-- SpaceAPI window moves and actions that activate another space return to the original spaces when the setting is enabled.
-- `executeWindowAction` and `moveSpecificWindow` accept the optional `deferAutomaticReturn` Boolean for clients that restore the original spaces once after a batch.
-- The Raycast extension reads the app setting and no longer keeps a separate automatic-return preference.
+- Structured SpaceAPI and AppleScript space records include `managedSpaceID`, mapping the stable DesktopRenamer `id` to its current macOS ManagedSpaceID. Older 1.3.0 builds omit this field. Use it only for current-session macOS calls and persist the stable `id`.
+- AppleScript access can be restricted separately from macOS Automation permission. This optional setting is off by default and uses the approved app list and access levels; it adds no AppleScript commands or payload fields.
 
 ## 1.3.0
 
@@ -23,6 +20,9 @@ Added opt-in SpaceAPI access restriction and authenticated local transport:
 - Enabling restriction disables all legacy and structured DistributedNotificationCenter request handlers and broadcasts. An empty approved-app list denies every SpaceAPI client.
 - Older clients that only support DistributedNotificationCenter cannot use SpaceAPI while restriction is enabled. When restriction is off, existing DNC clients remain compatible.
 - Disabling **Enable SpaceAPI** disables both SpaceAPI transports. AppleScript behavior is unchanged.
+- `getAPIInfo` reports the `returnToOriginalSpace` setting from DesktopRenamer's Launcher settings.
+- SpaceAPI window moves and actions that activate another space return to the original spaces when the setting is enabled.
+- `executeWindowAction` and `moveSpecificWindow` accept the optional `deferAutomaticReturn` Boolean for clients that restore the original spaces once after a batch.
 
 ## 1.2.0
 
