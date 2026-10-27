@@ -73,9 +73,9 @@ end tell
 
 ## Access control
 
-macOS Automation permission is still required before an app can send Apple events to DesktopRenamer. You can additionally enable **Restrict AppleScript access** in **Settings → General → Advanced → Manage SpaceAPI access**. This separate policy is off by default for compatibility.
+macOS Automation permission is required before an app can send Apple events to DesktopRenamer. The **Allow only approved apps** setting in **Settings → General → Advanced → Manage SpaceAPI access** also controls AppleScript access. There is no separate AppleScript restriction setting.
 
-When enabled, the first custom AppleScript command from an identifiable, unapproved app opens an access request. **Read Only** permits data queries, **Read & Write** permits queries and commands that change settings, spaces, or windows, and **Don't Allow** blocks the client. Decisions are saved with the app's SpaceAPI approval, and its access level applies to both interfaces whenever their restrictions are enabled. You can change or remove an app's approval in **Manage SpaceAPI access**. An app whose identity cannot be verified is denied.
+When app restriction is enabled, the first custom AppleScript command from an identifiable, unapproved app opens an access request. **Read Only** permits data queries, **Read & Write** permits queries and commands that change settings, spaces, or windows, and **Don't Allow** blocks the client. Decisions are saved with the app's SpaceAPI approval, and its access level applies to both interfaces. Turning the shared restriction off removes the app-level gate from both interfaces; macOS Automation permission is still required for AppleScript. You can change or remove an app's approval in **Manage SpaceAPI access**. An app whose identity cannot be verified is denied while restriction is enabled.
 
 Commands denied by this policy return script error `-4` with a message explaining whether access or write access is missing. macOS Automation consent and this DesktopRenamer access choice are separate checks.
 
